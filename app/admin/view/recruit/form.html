@@ -1,0 +1,56 @@
+<form class="layui-form layui-card" action="{:request()->url()}" data-auto="true" method="post" autocomplete="off">
+    <div class="layui-card-body padding-left-40">
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-xs6">
+                <label class="block relative">
+                    <span class="color-green font-w7">标题</span>
+                    <span class="color-desc margin-left-5">Title</span>
+                    <input name="title" value='{$vo.title|default=""}' required pattern="^.{4,}$" placeholder="请输入标题" class="layui-input">
+                </label>
+            </div>
+            <div class="layui-col-xs6">
+                <label class="block relative">
+                    <span class="color-green font-w7">人数</span>
+                    <span class="color-desc margin-left-5">Number</span>
+                    <input name="number" value='{$vo.number|default=""}' required placeholder="请输入数量" class="layui-input">
+                </label>
+            </div>
+            <div class="layui-col-xs6">
+                <label class="block relative">
+                    <span class="color-green font-w7">地址</span>
+                    <span class="color-desc margin-left-5">Address</span>
+                    <input name="address" value='{$vo.address|default=""}' required placeholder="请输入地址" class="layui-input">
+                </label>
+            </div>
+            <div class="layui-col-xs6">
+                <label class="block relative">
+                    <span class="color-green font-w7">联系邮箱</span>
+                    <span class="color-desc margin-left-5">ContactMail</span>
+                    <input name="contact_mail" value='{$vo.contact_mail|default=""}' required placeholder="请输入联系邮箱" class="layui-input">
+                </label>
+            </div>
+        </div>
+        <div class="hr-line-dashed margin-top-10 margin-bottom-10"></div>
+        <label class="layui-form-item block relative">
+            <span class="color-green">岗位职责</span>
+            <span class="color-desc margin-left-5">Duty</span>
+            <textarea ng-model="$vo.duty" name="duty" class="layui-textarea" style="height:80px;line-height:18px">{$vo.duty|default=""}</textarea>
+        </label>
+        <label class="layui-form-item block relative">
+            <span class="color-green">岗位要求</span>
+            <span class="color-desc margin-left-5">Request</span>
+            <textarea ng-model="$vo.request" name="request" class="layui-textarea" style="height:80px;line-height:18px">{$vo.request|default=""}</textarea>
+        </label>
+        <label class="layui-form-item block relative">
+            <span class="color-green">信息描述</span>
+            <span class="color-desc margin-left-5">Comment</span>
+            <textarea ng-model="$vo.comment" name="comment" class="layui-textarea" style="height:80px;line-height:18px">{$vo.comment|default=""}</textarea>
+        </label>
+        <div class="hr-line-dashed"></div>
+        {notempty name='vo.id'}<input type='hidden' value='{$vo.id}' name='id'>{/notempty}
+        <div class="layui-form-item text-center">
+            <button class="layui-btn" type='submit'>保存数据</button>
+            <button class="layui-btn layui-btn-danger" type='button' data-confirm="确定要取消编辑吗？" data-close>取消编辑</button>
+        </div>
+    </div>
+</form>

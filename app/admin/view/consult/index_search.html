@@ -1,0 +1,30 @@
+<fieldset>
+    <legend>条件搜索</legend>
+    <form class="layui-form layui-form-pane form-search" action="{:request()->url()}" onsubmit="return false" method="get" autocomplete="off">
+        <div class="layui-form-item layui-inline">
+            <label class="layui-form-label">关键字</label>
+            <label class="layui-input-inline">
+                <input name="comment" value="{:input('get.comment')}" placeholder="请输入关键字" class="layui-input">
+            </label>
+        </div>
+        <div class="layui-form-item layui-inline">
+            <label class="layui-form-label">回复状态</label>
+            <div class="layui-input-inline">
+                <select name="is_answered" class="layui-select">
+                    {foreach [''=>'-- 全部状态 --','1'=>'已回复','0'=>'未回复'] as $k=>$v}
+                    {if input('get.is_answered') neq '' && input('get.is_answered') eq $k}
+                    <option selected value="{$k}">{$v}</option>
+                    {else}
+                    <option value="{$k}">{$v}</option>
+                    {/if}
+                    {/foreach}
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item layui-inline">
+            <button class="layui-btn layui-btn-primary"><i class="layui-icon">&#xe615;</i> 搜 索</button>
+        </div>
+    </form>
+</fieldset>
+
+<script>form.render()</script>

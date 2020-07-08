@@ -50,21 +50,6 @@ class Fans extends Controller
     }
 
     /**
-     * 列表数据处理
-     * @param array $data
-     */
-    protected function _index_page_filter(array &$data)
-    {
-        $tags = $this->app->db->name('WechatFansTags')->column('name', 'id');
-        foreach ($data as &$vo) {
-            $vo['tags'] = [];
-            foreach (explode(',', $vo['tagid_list']) as $tagid) {
-                if (isset($tags[$tagid])) $vo['tags'][] = $tags[$tagid];
-            }
-        }
-    }
-
-    /**
      * 同步用户数据
      * @auth true
      */

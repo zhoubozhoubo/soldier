@@ -1,0 +1,65 @@
+<form class="layui-form layui-card" action="{:request()->url()}" data-auto="true" method="post" autocomplete="off">
+    <div class="layui-card-body padding-left-40">
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-xs12">
+                <label class="block relative">
+                    <span class="color-green font-w7">活动系列</span>
+                    <span class="color-desc margin-left-5">ActivityType</span>
+                    <select name='activity_type_id' class='layui-select' required>
+                        {foreach $activity_types as $activity_type}
+                        {eq name='activity_type' value='$vo.activity_type_id|default=1'}
+                        <option selected value='{$activity_type.id}'>{$activity_type.title}</option>
+                        {else}
+                        <option value='{$activity_type.id}'>{$activity_type.title}</option>
+                        {/eq}
+                        {/foreach}
+                    </select>
+                </label>
+            </div>
+            <div class="layui-col-xs6">
+                <label class="block relative">
+                    <span class="color-green font-w7">资源类型</span>
+                    <span class="color-desc margin-left-5">ResourceType</span>
+                    <select name='resource_type' class='layui-select' required>
+                        {foreach ['1'=>'视频资源','2'=>'图片资源'] as $k=>$v}
+                        {eq name='k' value='$vo.resource_type|default=1'}
+                        <option selected value='{$k}'>{$v}</option>
+                        {else}
+                        <option value='{$k}'>{$v}</option>
+                        {/eq}
+                        {/foreach}
+                    </select>
+                </label>
+            </div>
+            <div class="layui-col-xs6">
+                <label class="block relative">
+                    <span class="color-green font-w7">作者</span>
+                    <span class="color-desc margin-left-5">Author</span>
+                    <input name="author" value='{$vo.author|default=""}' required pattern="^.{2,}$" placeholder="请输入作者" class="layui-input">
+                </label>
+            </div>
+            <div class="layui-col-xs2 text-center">
+                <label class="block relative">
+                    <span class="color-green font-w7">图片</span>
+                    <span class="color-desc margin-left-5">Image</span>
+                    <input type="hidden" name="content" value="{$vo.content|default=''}">
+                    <script>$('[name=content]').uploadOneImage()</script>
+                </label>
+            </div>
+        </div>
+        <div class="hr-line-dashed"></div>
+        {notempty name='vo.id'}<input type='hidden' value='{$vo.id}' name='id'>{/notempty}
+        <div class="layui-form-item text-center">
+            <button class="layui-btn" type='submit'>保存数据</button>
+            <button class="layui-btn layui-btn-danger" type='button' data-confirm="确定要取消编辑吗？" data-close>取消编辑</button>
+        </div>
+    </div>
+</form>
+
+{block name='script'}
+<script>
+    require(['jquery.autocompleter'], function () {
+        layui.form.render();
+    });
+</script>
+{/block}

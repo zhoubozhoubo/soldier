@@ -39,9 +39,6 @@ class FansService extends Service
         if (!empty($user['subscribe_time'])) {
             $user['subscribe_at'] = date('Y-m-d H:i:s', $user['subscribe_time']);
         }
-        if (isset($user['tagid_list']) && is_array($user['tagid_list'])) {
-            $user['tagid_list'] = is_array($user['tagid_list']) ? join(',', $user['tagid_list']) : '';
-        }
         if ($appid !== '') $user['appid'] = $appid;
         unset($user['privilege'], $user['groupid']);
         return data_save('WechatFans', $user, 'openid');
@@ -58,6 +55,16 @@ class FansService extends Service
     public function get($openid)
     {
         return $this->app->db->name('WechatFans')->where(['openid' => $openid])->find();
+    }
+
+    /**
+     * 获取粉丝昵称
+     * @param $id
+     * @return mixed
+     */
+    public function getNicknameById($id)
+    {
+        return $this->app->db->name('WechatFans')->where(['id' => $id])->value('nickname');
     }
 
 }
