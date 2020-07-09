@@ -3,15 +3,15 @@
 {block name="button"}
 
 {if session('user.username') eq 'admin'}
-<div class="layui-form inline-block think-switch-button margin-right-10">
-    <!--{if $app->isDebug()}-->
+<!--<div class="layui-form inline-block think-switch-button margin-right-10">
+    &lt;!&ndash;{if $app->isDebug()}&ndash;&gt;
     <input type="checkbox" lay-skin="switch" lay-text="生产模式|开发模式" lay-filter="ThinkAdminDebug">
-    <!--{else}-->
+    &lt;!&ndash;{else}&ndash;&gt;
     <input type="checkbox" lay-skin="switch" lay-text="生产模式|开发模式" lay-filter="ThinkAdminDebug" checked>
-    <!--{/if}-->
+    &lt;!&ndash;{/if}&ndash;&gt;
     <script>form.render()</script>
 </div>
-<a class="layui-btn layui-btn-sm layui-btn-primary" data-queue="{:url('admin/api.plugs/optimize')}">优化数据库</a>
+<a class="layui-btn layui-btn-sm layui-btn-primary" data-queue="{:url('admin/api.plugs/optimize')}">优化数据库</a>-->
 {/if}
 
 {if auth('system')}
@@ -22,7 +22,7 @@
 
 {block name="content"}
 
-<div class="think-box-shadow padding-40 padding-top-20 padding-bottom-20 margin-bottom-15">
+<!--<div class="think-box-shadow padding-40 padding-top-20 padding-bottom-20 margin-bottom-15">
     <div class="layui-form-item margin-bottom-5">
         <span class="color-green font-w7">存储引擎 Storage</span>
         <div class="padding-top-5">
@@ -35,7 +35,7 @@
             {/foreach}
         </div>
     </div>
-</div>
+</div>-->
 
 <div class="think-box-shadow padding-40 padding-top-30 padding-bottom-20 margin-bottom-15">
     <div class="layui-form-item">
@@ -78,17 +78,17 @@
         </label>
         <div class="help-block">网站备案号，可以在<a target="_blank" href="http://beian.miit.gov.cn">备案管理中心</a>查询获取，将显示在登录页面下面</div>
     </div>
-    <div class="layui-form-item">
+    <!--<div class="layui-form-item">
         <div class="color-green font-w7">网站版权信息 Copyright</div>
         <label class="relative block">
             <input readonly value="{:sysconf('site_copy')}" class="layui-input layui-bg-gray">
             <a data-copy="{:sysconf('site_copy')}" class="fa fa-copy input-right-icon"></a>
         </label>
         <div class="help-block">网站版权信息，在后台登录页面显示版本信息并链接到备案到信息备案管理系统</div>
-    </div>
+    </div>-->
 </div>
 
-<div class="think-box-shadow padding-40 padding-top-30 padding-bottom-30">
+<!--<div class="think-box-shadow padding-40 padding-top-30 padding-bottom-30">
     <table class="layui-table" lay-even>
         <caption class="color-green font-w7 text-left">系统信息 System Information</caption>
         <tbody>
@@ -118,6 +118,6 @@
         </tr>
         </tbody>
     </table>
-</div>
+</div>-->
 
 {/block}
