@@ -102,7 +102,14 @@ class ActivityResource extends Controller
      */
     protected function _form_filter(&$data)
     {
-        if ($this->request->isGet()) {
+        if ($this->request->isPost()) {
+            if (!isset($data['activity_type_id']) || empty($data['activity_type_id'])) {
+                $this->error('请选择活动系列！');
+            }
+        } else if ($this->request->isGet()) {
+            $resource_type = $this->request->get('resource_type', 2);
+            $this->resource_type = $resource_type;
+
             $activity_types = $this->app->db->name('BusinessActivityType')->where(['status' => '1'])->order('sort desc,id asc')->column('id,title', 'id');
             $this->activity_types = $activity_types;
         }

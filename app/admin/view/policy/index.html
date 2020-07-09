@@ -67,7 +67,11 @@
                     {$vo.title|default=''}
                 </td>
                 <td class='text-left nowrap'>
-                    {$vo.policy_type === 1 ? '中央政策' : '地方政策'}
+                    <!--{if $vo.policy_type eq 1}-->
+                    <span class="layui-badge layui-bg-blue">中央政策</span>
+                    <!--{else}-->
+                    <span class="layui-badge layui-bg-black">地方政策</span>
+                    <!--{/if}-->
                 </td>
                 <td class='text-left nowrap'>
                     {$vo.from|default=''}

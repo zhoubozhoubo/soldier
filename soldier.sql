@@ -11,7 +11,7 @@
  Target Server Version : 100406
  File Encoding         : 65001
 
- Date: 08/07/2020 17:16:41
+ Date: 09/07/2020 19:54:13
 */
 
 SET NAMES utf8mb4;
@@ -192,11 +192,11 @@ CREATE TABLE `system_config` (
 -- Records of system_config
 -- ----------------------------
 BEGIN;
-INSERT INTO `system_config` VALUES ('base', 'site_name', 'ThinkAdmin');
+INSERT INTO `system_config` VALUES ('base', 'site_name', '军人e家');
 INSERT INTO `system_config` VALUES ('base', 'site_icon', 'https://v6.thinkadmin.top/upload/f47b8fe06e38ae99/08e8398da45583b9.png');
 INSERT INTO `system_config` VALUES ('base', 'site_copy', '©版权所有 2019-2020 楚才科技');
-INSERT INTO `system_config` VALUES ('base', 'app_name', 'ThinkAdmin');
-INSERT INTO `system_config` VALUES ('base', 'app_version', 'v6.0');
+INSERT INTO `system_config` VALUES ('base', 'app_name', '军人e家管理后台');
+INSERT INTO `system_config` VALUES ('base', 'app_version', 'v1.0');
 INSERT INTO `system_config` VALUES ('base', 'miitbeian', '粤ICP备16006642号-2');
 INSERT INTO `system_config` VALUES ('storage', 'qiniu_http_protocol', 'http');
 INSERT INTO `system_config` VALUES ('storage', 'type', 'local');
@@ -274,7 +274,7 @@ INSERT INTO `system_menu` VALUES (12, 2, '权限管理', '', '', '#', '', '_self
 INSERT INTO `system_menu` VALUES (27, 4, '系统任务管理', 'layui-icon layui-icon-log', '', 'admin/queue/index', '', '_self', 3, 0, '2018-11-29 11:13:34');
 INSERT INTO `system_menu` VALUES (49, 4, '系统日志管理', 'layui-icon layui-icon-form', '', 'admin/oplog/index', '', '_self', 2, 1, '2019-02-18 12:56:56');
 INSERT INTO `system_menu` VALUES (56, 0, '微信管理', '', '', '#', '', '_self', 200, 1, '2019-12-09 11:00:37');
-INSERT INTO `system_menu` VALUES (60, 56, '微信定制', '', '', '#', '', '_self', 0, 1, '2019-12-09 18:35:16');
+INSERT INTO `system_menu` VALUES (60, 56, '微信管理', '', '', '#', '', '_self', 0, 1, '2019-12-09 18:35:16');
 INSERT INTO `system_menu` VALUES (61, 60, '微信粉丝管理', 'layui-icon layui-icon-username', '', 'wechat/fans/index', '', '_self', 0, 1, '2019-12-09 18:35:37');
 INSERT INTO `system_menu` VALUES (62, 2, '军人服务管理', '', '', '#', '', '_self', 0, 1, '2020-06-25 17:32:52');
 INSERT INTO `system_menu` VALUES (63, 62, '咨询列表管理', 'layui-icon layui-icon-form', '', 'admin/consult/index', '', '_self', 0, 1, '2020-07-06 18:04:12');
@@ -365,7 +365,7 @@ CREATE TABLE `system_user` (
 -- Records of system_user
 -- ----------------------------
 BEGIN;
-INSERT INTO `system_user` VALUES (10000, 'admin', '21232f297a57a5a743894a0e4a801fc3', '系统管理员', '', '', '', '', '', '127.0.0.1', '2020-07-08 10:05:52', 1072, '', 1, 0, 0, '2015-11-13 15:14:22');
+INSERT INTO `system_user` VALUES (10000, 'admin', '21232f297a57a5a743894a0e4a801fc3', '系统管理员', '', '', '', '', '', '127.0.0.1', '2020-07-09 19:53:10', 1079, '', 1, 0, 0, '2015-11-13 15:14:22');
 COMMIT;
 
 -- ----------------------------
@@ -373,6 +373,23 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `wechat_fans`;
 CREATE TABLE `wechat_fans` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `unionid` varchar(100) DEFAULT '' COMMENT '粉丝unionid',
+  `openid` varchar(100) DEFAULT '' COMMENT '粉丝openid',
+  `nickname` varchar(200) DEFAULT '' COMMENT '用户昵称',
+  `headimgurl` varchar(500) DEFAULT '' COMMENT '用户头像',
+  `create_at` timestamp NULL DEFAULT current_timestamp() COMMENT '创建时间',
+  `is_realname` tinyint(1) DEFAULT 0 COMMENT '是否实名(1是,0否)',
+  PRIMARY KEY (`id`) USING BTREE,
+  KEY `index_wechat_fans_openid` (`openid`) USING BTREE,
+  KEY `index_wechat_fans_unionid` (`unionid`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='微信-粉丝';
+
+-- ----------------------------
+-- Table structure for wechat_fans_copy1
+-- ----------------------------
+DROP TABLE IF EXISTS `wechat_fans_copy1`;
+CREATE TABLE `wechat_fans_copy1` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `appid` varchar(50) DEFAULT '' COMMENT '公众号APPID',
   `unionid` varchar(100) DEFAULT '' COMMENT '粉丝unionid',
@@ -393,6 +410,7 @@ CREATE TABLE `wechat_fans` (
   `qr_scene` varchar(100) DEFAULT '' COMMENT '二维码场景值',
   `qr_scene_str` varchar(200) DEFAULT '' COMMENT '二维码场景内容',
   `create_at` timestamp NULL DEFAULT current_timestamp() COMMENT '创建时间',
+  `is_realname` tinyint(1) DEFAULT 0 COMMENT '是否实名(1是,0否)',
   PRIMARY KEY (`id`) USING BTREE,
   KEY `index_wechat_fans_openid` (`openid`) USING BTREE,
   KEY `index_wechat_fans_unionid` (`unionid`) USING BTREE,

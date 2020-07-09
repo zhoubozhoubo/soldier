@@ -68,7 +68,11 @@
                     {$vo.name|default=''}
                 </td>
                 <td class='text-left nowrap'>
-                    {$vo.spot_type === 1 ? '法律援助' : '心理咨询'}
+                    <!--{if $vo.spot_type eq 1}-->
+                    <span class="layui-badge layui-bg-blue">法律援助</span>
+                    <!--{else}-->
+                    <span class="layui-badge layui-bg-black">心理咨询</span>
+                    <!--{/if}-->
                 </td>
                 <td class='text-left nowrap'>
                     {$vo.address|default=''}

@@ -99,7 +99,19 @@ class ActivityType extends Controller
      */
     protected function _form_filter(&$data)
     {
-
+        if ($this->request->isPost()) {
+            // 查重
+            $where = ['title' => $data['title'], 'is_deleted' => 0];
+            if (isset($data['id']) && $data['id'] > 0) {
+                if ($this->app->db->name($this->table)->where($where)->where('id', '<>', $data['id'])->count() > 0) {
+                    $this->error("活动类型{$data['title']}已经存在！");
+                }
+            }else{
+                if ($this->app->db->name($this->table)->where($where)->count() > 0) {
+                    $this->error("活动类型{$data['title']}已经存在！");
+                }
+            }
+        }
     }
 
     /**
@@ -123,6 +135,17 @@ class ActivityType extends Controller
     public function state()
     {
         $this->_applyFormToken();
+
+        // 禁用可行性判断
+        $where = [
+            'activity_type_id' => input('id'),
+            'is_deleted' => 0
+        ];
+
+        if ($this->app->db->name('BusinessActivityResource')->where($where)->count() > 0) {
+            return $this->error('禁用失败，该活动类型下存在活动资源数据, 请检查！');
+        }
+
         $this->_save($this->table, ['status' => intval(input('status'))]);
     }
 

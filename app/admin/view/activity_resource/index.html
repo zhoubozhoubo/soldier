@@ -4,7 +4,10 @@
 
 {if isset($type) and $type eq 'all'}
 <!--{if auth("add")}-->
-<button data-modal='{:url("add")}' data-title="添加活动资源" class='layui-btn layui-btn-sm layui-btn-primary'>添加活动资源</button>
+<button data-modal='{:url("add")}?resource_type=1' data-title="添加活动视频资源" class='layui-btn layui-btn-sm layui-btn-primary'>添加活动视频资源</button>
+<!--{/if}-->
+<!--{if auth("add")}-->
+<button data-modal='{:url("add")}?resource_type=2' data-title="添加活动图片资源" class='layui-btn layui-btn-sm layui-btn-primary'>添加活动图片资源</button>
 <!--{/if}-->
 <!--{if auth("state")}-->
 <a data-confirm="确定要启用该活动资源吗？" data-action="{:url('state')}" data-rule="id#{key};status#0" data-csrf="{:systoken('state')}" class='layui-btn layui-btn-sm layui-btn-primary'>批量禁用</a>
@@ -61,7 +64,11 @@
                     <label><input data-action-blur="{:request()->url()}" data-value="id#{$vo.id};action#sort;sort#{value}" data-loading="false" value="{$vo.sort}" class="list-sort-input"></label>
                 </td>
                 <td class='text-left nowrap'>
+                    {if $vo.resource_type eq 1}
+                    <a target="_blank" href="{$vo.content|default=''}" style="color: #01AAED">点击查看视频</a>
+                    {else}
                     <img alt="img" width="40px" height="40px" data-tips-image src="{$vo.content|default=''}">
+                    {/if}
                 </td>
                 <td class='text-left nowrap'>
                     {$vo.author|default=''}
@@ -70,12 +77,16 @@
                     {$vo.activity_type_title|default=''}
                 </td>
                 <td class='text-left nowrap'>
-                    {$vo.resource_type === 1 ? '视频资源' : '图片资源'}
+                    <!--{if $vo.resource_type eq 1}-->
+                    <span class="layui-badge layui-bg-blue">视频资源</span>
+                    <!--{else}-->
+                    <span class="layui-badge layui-bg-black">图片资源</span>
+                    <!--{/if}-->
                 </td>
                 <td class='text-left nowrap'>
                     <!--{if isset($type) and $type eq 'all'}-->
                         <!--{if auth("edit")}-->
-                        <a data-dbclick class="layui-btn layui-btn-sm" data-title="编辑活动资源" data-modal='{:url("edit")}?id={$vo.id}'>编 辑</a>
+                        <a data-dbclick class="layui-btn layui-btn-sm" data-title="编辑活动资源" data-modal='{:url("edit")}?id={$vo.id}&resource_type={$vo.resource_type}'>编 辑</a>
                         <!--{/if}-->
                         <!--{if auth("state") and $vo.status eq 1}-->
                         <a class="layui-btn layui-btn-sm layui-btn-warm" data-confirm="确定要禁用该活动资源吗?" data-action="{:url('state')}" data-value="id#{$vo.id};status#0" data-csrf="{:systoken('state')}">禁 用</a>

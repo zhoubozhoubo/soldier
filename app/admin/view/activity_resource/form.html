@@ -1,53 +1,66 @@
 <form class="layui-form layui-card" action="{:request()->url()}" data-auto="true" method="post" autocomplete="off">
     <div class="layui-card-body padding-left-40">
         <div class="layui-row layui-col-space15">
-            <div class="layui-col-xs12">
-                <label class="block relative">
-                    <span class="color-green font-w7">活动系列</span>
-                    <span class="color-desc margin-left-5">ActivityType</span>
-                    <select name='activity_type_id' class='layui-select' required>
-                        {foreach $activity_types as $activity_type}
-                        {eq name='activity_type' value='$vo.activity_type_id|default=1'}
-                        <option selected value='{$activity_type.id}'>{$activity_type.title}</option>
+            <div class="layui-col-xs6 text-center">
+                <!--{if $resource_type eq 1}-->
+                <div class="layui-col-xs12 text-center">
+                    <label class="block relative">
+                        <span class="color-green font-w7">视频</span>
+                        <span class="color-desc margin-left-5">Video</span>
+                        {if isset($vo.content) && $vo.content neq ''}
+                        <video style="width: 100%; height: 100%" controls>
+                            <source src="{$vo.content}" type="video/mp4">
+                            您的浏览器不支持 video 标签。
+                        </video>
                         {else}
-                        <option value='{$activity_type.id}'>{$activity_type.title}</option>
-                        {/eq}
-                        {/foreach}
-                    </select>
-                </label>
+                        <input class='layui-input' value="{$vo.content|default=''}" name="content" placeholder="请上传视频或输入视频URL地址" title="请上传视频或输入视频URL地址">
+                        <a data-file="btn" data-type="mp4" data-field="content" class="input-group-addon"><i class="layui-icon layui-icon-upload"></i></a>
+                        {/if}
+                    </label>
+                </div>
+                <!--{else}-->
+                <div class="layui-col-xs4 layui-col-lg-offset4 text-center">
+                    <label class="block relative">
+                        <span class="color-green font-w7">图片</span>
+                        <span class="color-desc margin-left-5">Image</span>
+                        <input type="hidden" name="content" value="{$vo.content|default=''}">
+                        <script>$('[name=content]').uploadOneImage()</script>
+                    </label>
+                </div>
+                <!--{/if}-->
             </div>
             <div class="layui-col-xs6">
-                <label class="block relative">
-                    <span class="color-green font-w7">资源类型</span>
-                    <span class="color-desc margin-left-5">ResourceType</span>
-                    <select name='resource_type' class='layui-select' required>
-                        {foreach ['1'=>'视频资源','2'=>'图片资源'] as $k=>$v}
-                        {eq name='k' value='$vo.resource_type|default=1'}
-                        <option selected value='{$k}'>{$v}</option>
-                        {else}
-                        <option value='{$k}'>{$v}</option>
-                        {/eq}
-                        {/foreach}
-                    </select>
-                </label>
+                <div class="layui-col-xs12">
+                    <label class="block relative">
+                        <span class="color-green font-w7">活动系列</span>
+                        <span class="color-desc margin-left-5">ActivityType</span>
+                        <select name='activity_type_id' class='layui-select' required  placeholder="请选择活动系列">
+                            <option value=''>请选择活动系列</option>
+                            {foreach $activity_types as $activity_type}
+                            {eq name='activity_type.id' value='$vo.activity_type_id|default=1'}
+                            <option selected value='{$activity_type.id}'>{$activity_type.title}</option>
+                            {else}
+                            <option value='{$activity_type.id}'>{$activity_type.title}</option>
+                            {/eq}
+                            {/foreach}
+                        </select>
+                    </label>
+                </div>
+                <div class="layui-col-xs12">
+                    <label class="block relative">
+                        <span class="color-green font-w7">作者</span>
+                        <span class="color-desc margin-left-5">Author</span>
+                        <input name="author" value='{$vo.author|default=""}' required pattern="^.{2,}$" placeholder="请输入作者" class="layui-input">
+                    </label>
+                </div>
             </div>
-            <div class="layui-col-xs6">
-                <label class="block relative">
-                    <span class="color-green font-w7">作者</span>
-                    <span class="color-desc margin-left-5">Author</span>
-                    <input name="author" value='{$vo.author|default=""}' required pattern="^.{2,}$" placeholder="请输入作者" class="layui-input">
-                </label>
-            </div>
-            <div class="layui-col-xs2 text-center">
-                <label class="block relative">
-                    <span class="color-green font-w7">图片</span>
-                    <span class="color-desc margin-left-5">Image</span>
-                    <input type="hidden" name="content" value="{$vo.content|default=''}">
-                    <script>$('[name=content]').uploadOneImage()</script>
-                </label>
-            </div>
+
+
+
+
         </div>
         <div class="hr-line-dashed"></div>
+        {notempty name='resource_type'}<input type='hidden' value='{$resource_type}' name='resource_type'>{/notempty}
         {notempty name='vo.id'}<input type='hidden' value='{$vo.id}' name='id'>{/notempty}
         <div class="layui-form-item text-center">
             <button class="layui-btn" type='submit'>保存数据</button>

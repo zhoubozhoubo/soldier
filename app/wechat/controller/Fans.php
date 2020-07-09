@@ -15,6 +15,7 @@
 
 namespace app\wechat\controller;
 
+use app\wechat\service\FansInfoService;
 use app\wechat\service\WechatService;
 use think\admin\Controller;
 use think\exception\HttpResponseException;
@@ -44,10 +45,25 @@ class Fans extends Controller
     public function index()
     {
         $this->title = '微信用户管理';
-        $this->where = ['appid' => WechatService::instance()->getAppid()];
-        $query = $this->_query($this->table)->like('nickname')->equal('subscribe,is_black');
-        $query->dateBetween('subscribe_at')->where($this->where)->order('subscribe_time desc')->page();
+        $query = $this->_query($this->table)->like('nickname');
+        $query->equal('is_realname');
+        $query->dateBetween('create_at')->order('create_at desc')->page();
     }
+
+    /**
+     * 列表数据处理
+     * @param $data
+     */
+    protected function _index_page_filter(&$data)
+    {
+        foreach ($data as &$vo) {
+            $fansInfo = FansInfoService::instance()->getFansInfo($vo['id']);
+            $vo['name'] = $fansInfo['name'];
+            $vo['phone'] = $fansInfo['phone'] ? substr_replace($fansInfo['phone'],'****',3,4) : '';
+            $vo['id_number'] = $fansInfo['id_number'] ? substr_replace($fansInfo['id_number'],'****',3) : '';
+        }
+    }
+
 
     /**
      * 同步用户数据

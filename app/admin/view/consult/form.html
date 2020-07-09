@@ -3,7 +3,7 @@
         <label class="layui-form-item block relative">
             <span class="color-green">问题内容</span>
             <span class="color-desc margin-left-5">Question</span>
-            <textarea ng-model="$vo.comment" name="comment" disabled class="layui-textarea layui-disabled" style="height:80px;line-height:18px">{$vo.comment|default=""}</textarea>
+            <textarea ng-model="$vo.comment" name="comment" readonly class="layui-textarea layui-bg-gray" style="height:80px;line-height:18px">{$vo.comment|default=""}</textarea>
         </label>
         <div class="hr-line-dashed margin-top-10 margin-bottom-10"></div>
         <label class="layui-form-item block relative">
@@ -12,14 +12,17 @@
             <!--{if $vo.is_answered eq 0}-->
             <textarea ng-model="$vo.answer" name="answer" class="layui-textarea" style="height:80px;line-height:18px">{$vo.answer|default=""}</textarea>
             <!--{else}-->
-            <textarea ng-model="$vo.answer" name="answer" disabled class="layui-textarea layui-disabled" style="height:80px;line-height:18px">{$vo.answer|default=""}</textarea>
+            <textarea ng-model="$vo.answer" name="answer" readonly class="layui-textarea layui-bg-gray" style="height:80px;line-height:18px">{$vo.answer|default=""}</textarea>
             <!--{/if}-->
         </label>
         <div class="hr-line-dashed"></div>
         {notempty name='vo.id'}<input type='hidden' value='{$vo.id}' name='id'>{/notempty}
+
+        <!--{if $vo.is_answered eq 0}-->
         <div class="layui-form-item text-center">
             <button class="layui-btn" type='submit'>保存数据</button>
             <button class="layui-btn layui-btn-danger" type='button' data-confirm="确定要取消编辑吗？" data-close>取消编辑</button>
         </div>
+        <!--{/if}-->
     </div>
 </form>

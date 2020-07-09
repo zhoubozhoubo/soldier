@@ -62,7 +62,11 @@
                     {$vo.create_at|default=''}
                 </td>
                 <td class='text-left nowrap'>
-                    {$vo.is_answered === 1 ? '已回复' : '未回复'}
+                    <!--{if $vo.is_answered eq 1}-->
+                    <span class="layui-badge layui-bg-blue">已回复</span>
+                    <!--{else}-->
+                    <span class="layui-badge layui-bg-gray">未回复</span>
+                    <!--{/if}-->
                 </td>
                 <td class='text-left nowrap'>
                     {$vo.answer|default=''}
