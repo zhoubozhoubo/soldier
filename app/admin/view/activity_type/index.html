@@ -45,6 +45,7 @@
                 </th>
                 <th class='text-left nowrap' width="180px">图片</th>
                 <th class='text-left nowrap' width="180px">标题</th>
+                <th class='text-left nowrap' width="180px">活动时间</th>
                 <th class='text-left nowrap'>描述</th>
                 <th>操作</th>
             </tr>
@@ -64,6 +65,9 @@
                 </td>
                 <td class='text-left nowrap'>
                     {$vo.title|default=''}
+                </td>
+                <td class='text-left nowrap'>
+                    {$vo.activity_time|default=''}
                 </td>
                 <td class='text-left nowrap'>
                     {$vo.comment|default=''}

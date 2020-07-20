@@ -6,7 +6,7 @@
                 <label class="block relative">
                     <span class="color-green font-w7">图片</span>
                     <span class="color-desc margin-left-5">Image</span>
-                    <input type="hidden" name="content" value="{$vo.content|default=''}">
+                    <input type="hidden" name="content" required value="{$vo.content|default=''}">
                     <script>$('[name=content]').uploadOneImage()</script>
                 </label>
             </div>
@@ -15,20 +15,6 @@
                     <span class="color-green font-w7">姓名</span>
                     <span class="color-desc margin-left-5">Name</span>
                     <input name="name" value='{$vo.name|default=""}' required pattern="^.{2,}$" placeholder="请输入名称" class="layui-input">
-                </label>
-            </div>
-            <div class="layui-col-xs2">
-                <label class="block relative">
-                    <span class="color-green font-w7">年龄</span>
-                    <span class="color-desc margin-left-5">Age</span>
-                    <input name="age" value='{$vo.age|default=""}' required placeholder="请输入年龄" class="layui-input">
-                </label>
-            </div>
-            <div class="layui-col-xs5">
-                <label class="block relative">
-                    <span class="color-green font-w7">退役时间</span>
-                    <span class="color-desc margin-left-5">RetireTime</span>
-                    <input name="retire_time" value='{$vo.retire_time|default=""}' required placeholder="请输入退役时间" class="layui-input">
                 </label>
             </div>
         </div>

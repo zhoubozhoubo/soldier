@@ -43,11 +43,12 @@
                 <th class='list-table-sort-td'>
                     <button type="button" data-reload class="layui-btn layui-btn-xs">刷 新</button>
                 </th>
-                <th class='text-left nowrap' width="180px">图片</th>
+                <th class='text-left nowrap' width="80px">图片</th>
                 <th class='text-left nowrap' width="180px">名称</th>
-                <th class='text-left nowrap' width="100px">类型</th>
-                <th class='text-left nowrap' width="150px">地址</th>
-                <th class='text-left nowrap'>电话</th>
+                <th class='text-left nowrap' width="80px">类型</th>
+                <th class='text-left nowrap' width="100px">地址</th>
+                <th class='text-left nowrap' width="80px">电话</th>
+                <th class='text-left nowrap'>工作时间</th>
                 <th>操作</th>
             </tr>
             </thead>
@@ -79,6 +80,9 @@
                 </td>
                 <td class='text-left nowrap'>
                     {$vo.phone|default=''}
+                </td>
+                <td class='text-left nowrap'>
+                    {$vo.work_time|default=''}
                 </td>
                 <td class='text-left nowrap'>
                     {if isset($type) and $type eq 'all'}

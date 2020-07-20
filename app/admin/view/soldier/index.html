@@ -45,8 +45,7 @@
                 </th>
                 <th class='text-left nowrap' width="180px">图片</th>
                 <th class='text-left nowrap' width="180px">姓名</th>
-                <th class='text-left nowrap' width="100px">年龄</th>
-                <th class='text-left nowrap'>退役时间</th>
+                <th class='text-left nowrap'>内容</th>
                 <th>操作</th>
             </tr>
             </thead>
@@ -67,10 +66,7 @@
                     {$vo.name|default=''}
                 </td>
                 <td class='text-left nowrap'>
-                    {$vo.age|default=''}
-                </td>
-                <td class='text-left nowrap'>
-                    {$vo.retire_time|default=''}
+                    {$vo.comment|default=''}
                 </td>
                 <td class='text-left nowrap'>
                     {if isset($type) and $type eq 'all'}

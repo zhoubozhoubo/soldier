@@ -38,7 +38,7 @@ class BaseApi extends Controller
     public function __construct(App $app)
     {
         $this->app = $app;
-        if (isset($_SERVER['HTTP_TOKEN']) && !empty($_SERVER['HTTP_TOKEN'])) {
+        /*if (isset($_SERVER['HTTP_TOKEN']) && !empty($_SERVER['HTTP_TOKEN'])) {
             $this->token = $_SERVER['HTTP_TOKEN'];
         }
 
@@ -53,7 +53,7 @@ class BaseApi extends Controller
 
         if (!$this->fans['is_realname']) {
             return $this->error('未实名认证，请先实名认证');
-        }
+        }*/
 
         parent::__construct($app);
     }
@@ -134,7 +134,7 @@ class BaseApi extends Controller
         }
     }
 
-    public function returnSuccess($data = [], $msg = '')
+    public function returnSuccess($data = [], $msg = '操作成功')
     {
         $result = [
             'code' => 200,
@@ -142,7 +142,7 @@ class BaseApi extends Controller
             'msg' => $msg
         ];
 
-        return json_encode($result);
+        return json($result);
     }
 
     public function returnError($msg = '请求失败', $code = 500)
@@ -152,7 +152,7 @@ class BaseApi extends Controller
             'msg' => $msg
         ];
 
-        return json_encode($result);
+        return json($result);
     }
 
 }

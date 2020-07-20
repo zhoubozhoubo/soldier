@@ -16,6 +16,13 @@
                     <input name="title" value='{$vo.title|default=""}' required pattern="^.{4,}$" placeholder="请输入标题" class="layui-input">
                 </label>
             </div>
+            <div class="layui-col-xs4">
+                <label class="block relative">
+                    <span class="color-green font-w7">活动时间</span>
+                    <span class="color-desc margin-left-5">ActivityTime</span>
+                    <input type="date" name="activity_time" value='{$vo.activity_time|default=""}' placeholder="请输入活动时间" class="layui-input">
+                </label>
+            </div>
             <div class="layui-col-xs8">
                 <label class="layui-form-item block relative">
                     <span class="color-green">描述</span>

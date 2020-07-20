@@ -11,7 +11,7 @@
  Target Server Version : 100406
  File Encoding         : 65001
 
- Date: 09/07/2020 19:54:13
+ Date: 21/07/2020 01:00:17
 */
 
 SET NAMES utf8mb4;
@@ -49,6 +49,7 @@ CREATE TABLE `business_activity_type` (
   `image` varchar(255) DEFAULT NULL COMMENT '图片',
   `comment` varchar(255) DEFAULT NULL COMMENT '描述',
   `update_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT '更新时间',
+  `activity_time` date DEFAULT NULL COMMENT '活动时间',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='业务-活动类型';
 
@@ -85,6 +86,7 @@ CREATE TABLE `business_help_spot` (
   `address` varchar(255) DEFAULT NULL COMMENT '地址',
   `phone` varchar(20) DEFAULT NULL COMMENT '电话',
   `update_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT '更新时间',
+  `work_time` varchar(255) DEFAULT NULL COMMENT '工作时间',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='业务-援助点位';
 
@@ -104,6 +106,7 @@ CREATE TABLE `business_policy` (
   `comment` text DEFAULT NULL COMMENT '内容',
   `from` varchar(50) DEFAULT NULL COMMENT '来源',
   `update_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT '更新时间',
+  `is_hot` tinyint(1) DEFAULT 0 COMMENT '热点(1是,0否)',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='业务-政策';
 
@@ -117,14 +120,19 @@ CREATE TABLE `business_recruit` (
   `sort` bigint(20) DEFAULT 0 COMMENT '排序权重',
   `status` tinyint(1) unsigned DEFAULT 1 COMMENT '状态(0:禁用,1:启用)',
   `is_deleted` tinyint(1) DEFAULT 0 COMMENT '删除(1删除,0未删)',
+  `image` varchar(255) DEFAULT NULL COMMENT '图片',
   `title` varchar(50) DEFAULT NULL COMMENT '标题',
   `address` varchar(255) DEFAULT NULL COMMENT '地址',
-  `comment` text DEFAULT NULL COMMENT '内容',
-  `number` int(11) DEFAULT NULL COMMENT '人数',
+  `comment` text DEFAULT NULL COMMENT '职位详情',
+  `number` varchar(20) DEFAULT NULL COMMENT '人数',
+  `money` varchar(20) DEFAULT NULL COMMENT '薪资',
   `update_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT '更新时间',
-  `contact_mail` varchar(20) DEFAULT '' COMMENT '联系邮箱',
-  `duty` varchar(255) DEFAULT NULL COMMENT '岗位职责',
-  `request` varchar(255) DEFAULT NULL COMMENT '岗位要求',
+  `company_name` varchar(50) DEFAULT NULL COMMENT '公司名称',
+  `company_address` varchar(255) DEFAULT NULL COMMENT '公司地址',
+  `work_address` varchar(255) DEFAULT NULL COMMENT '工作地点',
+  `contact_email` varchar(255) DEFAULT NULL COMMENT '联系邮箱',
+  `contact_phone` varchar(20) DEFAULT NULL COMMENT '联系电话',
+  `end_date` date DEFAULT NULL COMMENT '结束日期',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='业务-招聘';
 
@@ -140,8 +148,6 @@ CREATE TABLE `business_soldier` (
   `is_deleted` tinyint(1) DEFAULT 0 COMMENT '删除(1删除,0未删)',
   `image` varchar(255) DEFAULT NULL COMMENT '图片',
   `name` varchar(20) DEFAULT NULL COMMENT '姓名',
-  `age` int(11) DEFAULT NULL COMMENT '年龄',
-  `retire_time` datetime DEFAULT NULL COMMENT '退役时间',
   `comment` text DEFAULT NULL COMMENT '内容',
   `update_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE
@@ -197,7 +203,7 @@ INSERT INTO `system_config` VALUES ('base', 'site_icon', 'https://v6.thinkadmin.
 INSERT INTO `system_config` VALUES ('base', 'site_copy', '©版权所有 2019-2020 楚才科技');
 INSERT INTO `system_config` VALUES ('base', 'app_name', '军人e家管理后台');
 INSERT INTO `system_config` VALUES ('base', 'app_version', 'v1.0');
-INSERT INTO `system_config` VALUES ('base', 'miitbeian', '粤ICP备16006642号-2');
+INSERT INTO `system_config` VALUES ('base', 'miitbeian', '');
 INSERT INTO `system_config` VALUES ('storage', 'qiniu_http_protocol', 'http');
 INSERT INTO `system_config` VALUES ('storage', 'type', 'local');
 INSERT INTO `system_config` VALUES ('storage', 'allow_exts', 'doc,gif,icon,jpg,mp3,mp4,p12,pem,png,rar,xls,xlsx');
@@ -365,7 +371,7 @@ CREATE TABLE `system_user` (
 -- Records of system_user
 -- ----------------------------
 BEGIN;
-INSERT INTO `system_user` VALUES (10000, 'admin', '21232f297a57a5a743894a0e4a801fc3', '系统管理员', '', '', '', '', '', '127.0.0.1', '2020-07-09 19:53:10', 1079, '', 1, 0, 0, '2015-11-13 15:14:22');
+INSERT INTO `system_user` VALUES (10000, 'admin', '21232f297a57a5a743894a0e4a801fc3', '系统管理员', '', '', '', '', '', '127.0.0.1', '2020-07-20 20:56:20', 1086, '', 1, 0, 0, '2015-11-13 15:14:22');
 COMMIT;
 
 -- ----------------------------
@@ -383,39 +389,6 @@ CREATE TABLE `wechat_fans` (
   PRIMARY KEY (`id`) USING BTREE,
   KEY `index_wechat_fans_openid` (`openid`) USING BTREE,
   KEY `index_wechat_fans_unionid` (`unionid`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='微信-粉丝';
-
--- ----------------------------
--- Table structure for wechat_fans_copy1
--- ----------------------------
-DROP TABLE IF EXISTS `wechat_fans_copy1`;
-CREATE TABLE `wechat_fans_copy1` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `appid` varchar(50) DEFAULT '' COMMENT '公众号APPID',
-  `unionid` varchar(100) DEFAULT '' COMMENT '粉丝unionid',
-  `openid` varchar(100) DEFAULT '' COMMENT '粉丝openid',
-  `is_black` tinyint(1) unsigned DEFAULT 0 COMMENT '是否为黑名单状态',
-  `subscribe` tinyint(1) unsigned DEFAULT 0 COMMENT '关注状态(0未关注,1已关注)',
-  `nickname` varchar(200) DEFAULT '' COMMENT '用户昵称',
-  `sex` tinyint(1) unsigned DEFAULT 0 COMMENT '用户性别(1男性,2女性,0未知)',
-  `country` varchar(50) DEFAULT '' COMMENT '用户所在国家',
-  `province` varchar(50) DEFAULT '' COMMENT '用户所在省份',
-  `city` varchar(50) DEFAULT '' COMMENT '用户所在城市',
-  `language` varchar(50) DEFAULT '' COMMENT '用户的语言(zh_CN)',
-  `headimgurl` varchar(500) DEFAULT '' COMMENT '用户头像',
-  `subscribe_time` bigint(20) unsigned DEFAULT 0 COMMENT '关注时间',
-  `subscribe_at` datetime DEFAULT NULL COMMENT '关注时间',
-  `remark` varchar(50) DEFAULT '' COMMENT '备注',
-  `subscribe_scene` varchar(200) DEFAULT '' COMMENT '扫码关注场景',
-  `qr_scene` varchar(100) DEFAULT '' COMMENT '二维码场景值',
-  `qr_scene_str` varchar(200) DEFAULT '' COMMENT '二维码场景内容',
-  `create_at` timestamp NULL DEFAULT current_timestamp() COMMENT '创建时间',
-  `is_realname` tinyint(1) DEFAULT 0 COMMENT '是否实名(1是,0否)',
-  PRIMARY KEY (`id`) USING BTREE,
-  KEY `index_wechat_fans_openid` (`openid`) USING BTREE,
-  KEY `index_wechat_fans_unionid` (`unionid`) USING BTREE,
-  KEY `index_wechat_fans_is_back` (`is_black`) USING BTREE,
-  KEY `index_wechat_fans_subscribe` (`subscribe`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='微信-粉丝';
 
 -- ----------------------------

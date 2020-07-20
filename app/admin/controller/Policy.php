@@ -90,7 +90,6 @@ class Policy extends Controller
      */
     protected function _form_filter(&$data)
     {
-
     }
 
     /**
