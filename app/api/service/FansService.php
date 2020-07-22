@@ -16,6 +16,7 @@
 namespace app\api\service;
 
 use app\api\controller\Fans;
+use app\wechat\service\WechatService;
 use think\admin\Service;
 
 /**
@@ -31,13 +32,15 @@ class FansService extends Service
      */
     public function login()
     {
-        $openid = '123456';
+        print_r(WechatService::instance()->getWebOauthInfo('www.ninelie.site/api/ActivityResource/getAll'));
+
+        /*$openid = '123456';
         $fans = $this->app->db->name('WechatFans')->where(['openid' => $openid])->find();
 
         $token = token($openid);
         session($token, json_encode($fans));
 
-        return $token;
+        return $token;*/
     }
 
 }

@@ -28,7 +28,10 @@ class FansInfoService extends Service
     /**
      * 获取粉丝实名信息
      * @param $id
-     * @return mixed
+     * @return array|\think\Model|null
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\DbException
+     * @throws \think\db\exception\ModelNotFoundException
      */
     public function getFansInfo($id)
     {

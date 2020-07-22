@@ -34,6 +34,8 @@ class ActivityResource extends BaseApi
      */
     public function getAll()
     {
+        print_r(session());
+
         $activity_type_id = $this->request->get('activity_type_id');
         $where['activity_type_id'] = $activity_type_id;
 
