@@ -11,7 +11,7 @@
  Target Server Version : 100406
  File Encoding         : 65001
 
- Date: 21/07/2020 01:00:17
+ Date: 22/07/2020 17:26:01
 */
 
 SET NAMES utf8mb4;
@@ -280,6 +280,7 @@ INSERT INTO `system_menu` VALUES (12, 2, '权限管理', '', '', '#', '', '_self
 INSERT INTO `system_menu` VALUES (27, 4, '系统任务管理', 'layui-icon layui-icon-log', '', 'admin/queue/index', '', '_self', 3, 0, '2018-11-29 11:13:34');
 INSERT INTO `system_menu` VALUES (49, 4, '系统日志管理', 'layui-icon layui-icon-form', '', 'admin/oplog/index', '', '_self', 2, 1, '2019-02-18 12:56:56');
 INSERT INTO `system_menu` VALUES (56, 0, '微信管理', '', '', '#', '', '_self', 200, 1, '2019-12-09 11:00:37');
+INSERT INTO `system_menu` VALUES (58, 56, '微信接口配置', 'layui-icon layui-icon-set', '', 'wechat/config/options', '', '_self', 0, 1, '2019-12-09 13:57:28');
 INSERT INTO `system_menu` VALUES (60, 56, '微信管理', '', '', '#', '', '_self', 0, 1, '2019-12-09 18:35:16');
 INSERT INTO `system_menu` VALUES (61, 60, '微信粉丝管理', 'layui-icon layui-icon-username', '', 'wechat/fans/index', '', '_self', 0, 1, '2019-12-09 18:35:37');
 INSERT INTO `system_menu` VALUES (62, 2, '军人服务管理', '', '', '#', '', '_self', 0, 1, '2020-06-25 17:32:52');
@@ -308,7 +309,14 @@ CREATE TABLE `system_oplog` (
   `username` varchar(50) NOT NULL DEFAULT '' COMMENT '操作人用户名',
   `create_at` timestamp NOT NULL DEFAULT current_timestamp() COMMENT '创建时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='系统-日志';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COMMENT='系统-日志';
+
+-- ----------------------------
+-- Records of system_oplog
+-- ----------------------------
+BEGIN;
+INSERT INTO `system_oplog` VALUES (1, 'admin/login/index', '127.0.0.1', '用户登录', '登录系统后台成功', 'admin', '2020-07-22 16:32:09');
+COMMIT;
 
 -- ----------------------------
 -- Table structure for system_queue
@@ -371,7 +379,7 @@ CREATE TABLE `system_user` (
 -- Records of system_user
 -- ----------------------------
 BEGIN;
-INSERT INTO `system_user` VALUES (10000, 'admin', '21232f297a57a5a743894a0e4a801fc3', '系统管理员', '', '', '', '', '', '127.0.0.1', '2020-07-20 20:56:20', 1086, '', 1, 0, 0, '2015-11-13 15:14:22');
+INSERT INTO `system_user` VALUES (10000, 'admin', '21232f297a57a5a743894a0e4a801fc3', '系统管理员', '', '', '', '', '', '127.0.0.1', '2020-07-22 16:32:09', 1087, '', 1, 0, 0, '2015-11-13 15:14:22');
 COMMIT;
 
 -- ----------------------------
