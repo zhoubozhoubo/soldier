@@ -37,13 +37,7 @@ class Fans extends Controller
      */
     public function login()
     {
-        $token = FansService::instance()->login();
-
-        $data = [
-            'token' => $token
-        ];
-
-        return $this->success($data, '登录成功');
+        FansService::instance()->login();
     }
 
 }

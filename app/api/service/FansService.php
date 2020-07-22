@@ -32,7 +32,7 @@ class FansService extends Service
      */
     public function login()
     {
-        return WechatService::instance()->getWebOauthInfo('www.ninelie.site/api/ActivityResource/getAll');
+        WechatService::instance()->getWebOauthInfo('www.ninelie.site/api/ActivityResource/getAll');
 
         /*$openid = '123456';
         $fans = $this->app->db->name('WechatFans')->where(['openid' => $openid])->find();
