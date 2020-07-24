@@ -55,6 +55,16 @@ class Soldier extends Controller
     }
 
     /**
+     * 列表数据处理
+     * @param $data
+     */
+    protected function _index_page_filter(&$data)
+    {
+        foreach ($data as &$vo) {
+        }
+    }
+
+    /**
      * 添加退役军人信息
      * @auth true
      * @throws \think\db\exception\DataNotFoundException

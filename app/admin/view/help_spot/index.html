@@ -66,7 +66,7 @@
                     <img alt="img" width="40px" height="40px" data-tips-image src="{$vo.image|default=''}">
                 </td>
                 <td class='text-left nowrap'>
-                    {$vo.name|default=''}
+                    {$vo.name|default=''|msubstr=0,10,'utf-8',true}
                 </td>
                 <td class='text-left nowrap'>
                     <!--{if $vo.spot_type eq 1}-->
@@ -76,7 +76,7 @@
                     <!--{/if}-->
                 </td>
                 <td class='text-left nowrap'>
-                    {$vo.address|default=''}
+                    {$vo.address|default=''|msubstr=0,10,'utf-8',true}
                 </td>
                 <td class='text-left nowrap'>
                     {$vo.phone|default=''}

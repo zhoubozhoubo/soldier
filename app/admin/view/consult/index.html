@@ -53,7 +53,7 @@
                     <label><input class="list-check-box" value='{$vo.id}' type='checkbox'></label>
                 </td>
                 <td class='text-left nowrap'>
-                    {$vo.comment|default=''}
+                    {$vo.comment|default=''|msubstr=0,10,'utf-8',true}
                 </td>
                 <td class='text-left nowrap'>
                     {$vo.fans_nickname|default=''}
@@ -69,7 +69,7 @@
                     <!--{/if}-->
                 </td>
                 <td class='text-left nowrap'>
-                    {$vo.answer|default=''}
+                    {$vo.answer|default=''|msubstr=0,10,'utf-8',true}
                 </td>
                 <td class='text-left nowrap'>
                     <!--{if isset($type) and $type eq 'all'}-->
