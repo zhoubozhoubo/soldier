@@ -1,0 +1,51 @@
+<form class="layui-form layui-card" action="{:request()->url()}" data-auto="true" method="post" autocomplete="off">
+    <div class="layui-card-body padding-left-40">
+
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-xs2 text-center">
+                <label class="block relative">
+                    <span class="color-green font-w7">图片</span>
+                    <span class="color-desc margin-left-5">Image</span>
+                    <input type="hidden" name="image" required value="{$vo.image|default=''}">
+                    <script>$('[name=image]').uploadOneImage()</script>
+                </label>
+            </div>
+            <div class="layui-col-xs8 layui-col-lg-offset1">
+                <label class="block relative">
+                    <span class="color-green font-w7">板块类型</span>
+                    <span class="color-desc margin-left-5">SpotType</span>
+                    <select name='banner_type' class='layui-select' required>
+                        {foreach ['1'=>'政策解读','2'=>'军人风采','3'=>'法律援助','4'=>'心理咨询'] as $k=>$v}
+                        {eq name='k' value='$vo.banner_type|default=1'}
+                        <option selected value='{$k}'>{$v}</option>
+                        {else}
+                        <option value='{$k}'>{$v}</option>
+                        {/eq}
+                        {/foreach}
+                    </select>
+                </label>
+            </div>
+            <div class="layui-col-xs8 layui-col-lg-offset1">
+                <label class="block relative">
+                    <span class="color-green font-w7">标题</span>
+                    <span class="color-desc margin-left-5">Title</span>
+                    <input name="title" value='{$vo.title|default=""}' placeholder="请输入标题" class="layui-input">
+                </label>
+            </div>
+        </div>
+        <div class="hr-line-dashed"></div>
+        {notempty name='vo.id'}<input type='hidden' value='{$vo.id}' name='id'>{/notempty}
+        <div class="layui-form-item text-center">
+            <button class="layui-btn" type='submit'>保存数据</button>
+            <button class="layui-btn layui-btn-danger" type='button' data-confirm="确定要取消编辑吗？" data-close>取消编辑</button>
+        </div>
+    </div>
+</form>
+
+{block name='script'}
+<script>
+    require(['jquery.autocompleter'], function () {
+        layui.form.render();
+    });
+</script>
+{/block}

@@ -11,7 +11,7 @@
  Target Server Version : 100406
  File Encoding         : 65001
 
- Date: 22/07/2020 17:26:01
+ Date: 24/07/2020 10:46:43
 */
 
 SET NAMES utf8mb4;
@@ -52,6 +52,23 @@ CREATE TABLE `business_activity_type` (
   `activity_time` date DEFAULT NULL COMMENT '活动时间',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='业务-活动类型';
+
+-- ----------------------------
+-- Table structure for business_banner
+-- ----------------------------
+DROP TABLE IF EXISTS `business_banner`;
+CREATE TABLE `business_banner` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `create_at` timestamp NULL DEFAULT current_timestamp() COMMENT '创建时间',
+  `sort` bigint(20) DEFAULT 0 COMMENT '排序权重',
+  `status` tinyint(1) unsigned DEFAULT 1 COMMENT '状态(0:禁用,1:启用)',
+  `is_deleted` tinyint(1) DEFAULT 0 COMMENT '删除(1删除,0未删)',
+  `image` varchar(255) DEFAULT NULL COMMENT '图片',
+  `title` varchar(255) DEFAULT NULL COMMENT '标题',
+  `banner_type` tinyint(1) DEFAULT NULL COMMENT 'banner类型(1政策解读,2军人风采,3法律援助,4心理咨询)',
+  `update_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT '更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC COMMENT='业务-banner';
 
 -- ----------------------------
 -- Table structure for business_consult
@@ -231,6 +248,7 @@ INSERT INTO `system_config` VALUES ('storage', 'alioss_bucket', '');
 INSERT INTO `system_config` VALUES ('storage', 'alioss_http_domain', '');
 INSERT INTO `system_config` VALUES ('storage', 'alioss_access_key', '');
 INSERT INTO `system_config` VALUES ('storage', 'alioss_secret_key', '');
+INSERT INTO `system_config` VALUES ('base', 'about', '关于我们123123123wecwvqr');
 COMMIT;
 
 -- ----------------------------
@@ -264,7 +282,7 @@ CREATE TABLE `system_menu` (
   PRIMARY KEY (`id`) USING BTREE,
   KEY `idx_system_menu_node` (`node`) USING BTREE,
   KEY `idx_system_menu_status` (`status`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=74 DEFAULT CHARSET=utf8mb4 COMMENT='系统-菜单';
+) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=utf8mb4 COMMENT='系统-菜单';
 
 -- ----------------------------
 -- Records of system_menu
@@ -292,8 +310,9 @@ INSERT INTO `system_menu` VALUES (67, 2, '军人动态管理', '', '', '#', '', 
 INSERT INTO `system_menu` VALUES (68, 67, '活动系列管理', 'layui-icon layui-icon-form', '', 'admin/activity_type/index', '', '_self', 0, 1, '2020-07-06 18:04:12');
 INSERT INTO `system_menu` VALUES (69, 67, '活动资源管理', 'layui-icon layui-icon-form', '', 'admin/activity_resource/index', '', '_self', 0, 1, '2020-07-06 18:04:12');
 INSERT INTO `system_menu` VALUES (70, 67, '退役军人管理', 'layui-icon layui-icon-form', '', 'admin/soldier/index', '', '_self', 0, 1, '2020-07-06 18:04:12');
-INSERT INTO `system_menu` VALUES (72, 2, '关于', '', '', '#', '', '_self', 0, 1, '2020-07-06 18:51:46');
-INSERT INTO `system_menu` VALUES (73, 72, '军人e家', 'layui-icon layui-icon-form', '', 'admin/about/index', '', '_self', 0, 1, '2020-07-06 18:52:46');
+INSERT INTO `system_menu` VALUES (72, 2, '前端配置', '', '', '#', '', '_self', 0, 1, '2020-07-06 18:51:46');
+INSERT INTO `system_menu` VALUES (73, 72, 'banner管理', 'layui-icon layui-icon-form', '', 'admin/banner/index', '', '_self', 0, 1, '2020-07-24 09:58:56');
+INSERT INTO `system_menu` VALUES (74, 72, '关于军人e家', 'layui-icon layui-icon-form', '', 'admin/about/index', '', '_self', 0, 1, '2020-07-06 18:52:46');
 COMMIT;
 
 -- ----------------------------
@@ -309,14 +328,7 @@ CREATE TABLE `system_oplog` (
   `username` varchar(50) NOT NULL DEFAULT '' COMMENT '操作人用户名',
   `create_at` timestamp NOT NULL DEFAULT current_timestamp() COMMENT '创建时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COMMENT='系统-日志';
-
--- ----------------------------
--- Records of system_oplog
--- ----------------------------
-BEGIN;
-INSERT INTO `system_oplog` VALUES (1, 'admin/login/index', '127.0.0.1', '用户登录', '登录系统后台成功', 'admin', '2020-07-22 16:32:09');
-COMMIT;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='系统-日志';
 
 -- ----------------------------
 -- Table structure for system_queue
@@ -379,7 +391,7 @@ CREATE TABLE `system_user` (
 -- Records of system_user
 -- ----------------------------
 BEGIN;
-INSERT INTO `system_user` VALUES (10000, 'admin', '21232f297a57a5a743894a0e4a801fc3', '系统管理员', '', '', '', '', '', '127.0.0.1', '2020-07-22 16:32:09', 1087, '', 1, 0, 0, '2015-11-13 15:14:22');
+INSERT INTO `system_user` VALUES (10000, 'admin', '21232f297a57a5a743894a0e4a801fc3', '系统管理员', '', '', '', '', '', '127.0.0.1', '2020-07-24 10:00:48', 1090, '', 1, 0, 0, '2015-11-13 15:14:22');
 COMMIT;
 
 -- ----------------------------

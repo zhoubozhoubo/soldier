@@ -1,0 +1,22 @@
+{extend name="main"}
+
+{block name="button"}
+
+{if auth('system')}
+<a class="layui-btn layui-btn-sm layui-btn-primary" data-modal="{:url('system')}">修改内容</a>
+{/if}
+
+{/block}
+
+{block name="content"}
+<div class="think-box-shadow padding-40 padding-top-30 padding-bottom-20 margin-bottom-15">
+    <div class="layui-form-item">
+        <div class="color-green font-w7">关于军人e家</div>
+        <label class="relative block">
+            <textarea ng-model="{:sysconf('about')}" readonly name="about" class="layui-textarea layui-bg-gray" style="height:80px;line-height:18px">{:sysconf('about')}</textarea>
+            <a data-copy="{:sysconf('about')}" class="fa fa-copy input-right-icon"></a>
+        </label>
+        <div class="help-block">关于军人e家介绍说明</div>
+    </div>
+</div>
+{/block}
