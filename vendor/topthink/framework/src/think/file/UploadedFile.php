@@ -61,6 +61,7 @@ class UploadedFile extends File
             });
 
             $moved = move_uploaded_file($this->getPathname(), $target);
+            chmod($this->getPathname(),755);
             restore_error_handler();
             if (!$moved) {
                 throw new FileException(sprintf('Could not move the file "%s" to "%s" (%s)', $this->getPathname(), $target, strip_tags($error)));
