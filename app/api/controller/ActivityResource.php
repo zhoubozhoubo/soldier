@@ -37,7 +37,9 @@ class ActivityResource extends BaseApi
         print_r(session());
 
         $activity_type_id = $this->request->get('activity_type_id');
+        $resource_type = $this->request->get('resource_type');
         $where['activity_type_id'] = $activity_type_id;
+        $where['resource_type'] = $resource_type;
 
         $data = $this->BaseAll($this->table, $where);
 
@@ -50,7 +52,9 @@ class ActivityResource extends BaseApi
     public function getPage()
     {
         $activity_type_id = $this->request->get('activity_type_id');
+        $resource_type = $this->request->get('resource_type');
         $where['activity_type_id'] = $activity_type_id;
+        $where['resource_type'] = $resource_type;
 
         $data = $this->BasePage($this->table, $where);
 
