@@ -32,7 +32,8 @@ class FansService extends Service
      */
     public function login()
     {
-        WechatService::instance()->getWebOauthInfo('http://soldier.ninelie.site/#/consult/index');
+        echo 'WechatService::instance()->getWebOauthInfo(\'http://soldier.ninelie.site/#/consult/index\')';
+        echo WechatService::instance()->getWebOauthInfo('http://soldier.ninelie.site/#/consult/index');
 
         /*$openid = '123456';
         $fans = $this->app->db->name('WechatFans')->where(['openid' => $openid])->find();

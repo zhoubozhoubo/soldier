@@ -37,7 +37,8 @@ class Fans extends Controller
      */
     public function login()
     {
-        FansService::instance()->login();
+        echo 'FansService::instance()->login()';
+        echo FansService::instance()->login();
     }
 
 }
