@@ -228,7 +228,7 @@ class WechatService extends Service
             if (input('state') !== $appid) {
                 $snsapi = empty($isfull) ? 'snsapi_base' : 'snsapi_userinfo';
                 $param = (strpos($source, '?') !== false ? '&' : '?') . 'rcode=' . enbase64url($source);
-                print_r($source . $param, $appid, $snsapi);
+                print_r(json($source . $param, $appid, $snsapi));
                 return;
                 $oauthurl = $wechat->getOauthRedirect($source . $param, $appid, $snsapi);
                 if ($redirect) throw new HttpResponseException(redirect($oauthurl, 301));
