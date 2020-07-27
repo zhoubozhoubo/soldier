@@ -220,23 +220,21 @@ class WechatService extends Service
         $openid = $this->app->session->get("{$appid}_openid");
         $fansinfo = $this->app->session->get("{$appid}_fansinfo");
         if ((empty($isfull) && !empty($openid)) || (!empty($isfull) && !empty($openid) && !empty($fansinfo))) {
-            $this->app->db->name('WechatFans')->save(['unionid'=>'1']);
             empty($fansinfo) || FansService::instance()->set($fansinfo);
             return ['openid' => $openid, 'fansinfo' => $fansinfo];
         }
         if ($this->getType() === 'api') {
-            $this->app->db->name('WechatFans')->save(['unionid'=>'2']);
             $wechat = self::WeChatOauth();
             if (input('state') !== $appid) {
-                $this->app->db->name('WechatFans')->save(['unionid'=>'3']);
                 $snsapi = empty($isfull) ? 'snsapi_base' : 'snsapi_userinfo';
                 $param = (strpos($source, '?') !== false ? '&' : '?') . 'rcode=' . enbase64url($source);
+                print_r(json_encode($source . $param, $appid, $snsapi));
+                return;
                 $oauthurl = $wechat->getOauthRedirect($source . $param, $appid, $snsapi);
                 if ($redirect) throw new HttpResponseException(redirect($oauthurl, 301));
                 exit("window.location.href='{$oauthurl}'");
             }
             if (($token = $wechat->getOauthAccessToken()) && isset($token['openid'])) {
-                $this->app->db->name('WechatFans')->save(['unionid'=>'4']);
                 $this->app->session->set("{$appid}_openid", $openid = $token['openid']);
                 if (empty($isfull) && input('rcode')) {
                     throw new HttpResponseException(redirect(debase64url(input('rcode')), 301));
@@ -246,7 +244,6 @@ class WechatService extends Service
             }
             throw new HttpResponseException(redirect(debase64url(input('rcode')), 301));
         } else {
-            $this->app->db->name('WechatFans')->save(['unionid'=>'5']);
             $result = self::ThinkServiceConfig()->oauth($this->app->session->getId(), $source, $isfull);
             $this->app->session->set("{$appid}_openid", $openid = $result['openid']);
             $this->app->session->set("{$appid}_fansinfo", $fansinfo = $result['fans']);
@@ -255,10 +252,8 @@ class WechatService extends Service
                 return ['openid' => $openid, 'fansinfo' => $fansinfo];
             }
             if ($redirect && !empty($result['url'])) {
-                $this->app->db->name('WechatFans')->save(['unionid'=>'6']);
                 throw new HttpResponseException(redirect($result['url'], 301));
             } else {
-                $this->app->db->name('WechatFans')->save(['unionid'=>'7']);
                 throw new HttpResponseException(response("window.location.href='{$result['url']}'"));
             }
         }
