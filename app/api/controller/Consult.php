@@ -60,7 +60,7 @@ class Consult extends BaseApi
         $data = $this->BasePage($this->table, $where);
 
 //        return $this->returnSuccess($data);
-        return $this->returnSuccess($this->fans);
+        return $this->returnSuccess([]);
     }
 
     /**
