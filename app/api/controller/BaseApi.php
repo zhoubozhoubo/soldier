@@ -37,6 +37,8 @@ class BaseApi extends Controller
 
     public function __construct(App $app)
     {
+        header('access-Control-Allow-Origin:*');
+
         $this->app = $app;
         /*if (isset($_SERVER['HTTP_TOKEN']) && !empty($_SERVER['HTTP_TOKEN'])) {
             $this->token = $_SERVER['HTTP_TOKEN'];
