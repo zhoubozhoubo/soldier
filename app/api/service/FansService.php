@@ -29,11 +29,20 @@ class FansService extends Service
 
     /**
      * 粉丝登录
+     * @param $referer
+     * @return string
+     * @throws \WeChat\Exceptions\InvalidResponseException
+     * @throws \WeChat\Exceptions\LocalCacheException
+     * @throws \think\Exception
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\DbException
+     * @throws \think\db\exception\ModelNotFoundException
      */
-    public function login()
+    public function login($referer)
     {
-        echo 'WechatService::instance()->getWebOauthInfo(\'http://soldier.ninelie.site/#/consult/index\')';
-        echo WechatService::instance()->getWebOauthInfo('http://soldier.ninelie.site/#/consult/index');
+        $info = WechatService::instance()->getWebOauthInfo($referer);
+        $log = new \think\facade\Log();
+        $log->write('info json:' . json_encode($info));
 
         /*$openid = '123456';
         $fans = $this->app->db->name('WechatFans')->where(['openid' => $openid])->find();

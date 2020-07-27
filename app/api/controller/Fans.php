@@ -17,6 +17,7 @@ namespace app\api\controller;
 
 use app\api\service\FansService;
 use think\admin\Controller;
+use think\Log;
 
 /**
  * 微信粉丝接口
@@ -37,8 +38,10 @@ class Fans extends Controller
      */
     public function login()
     {
-        echo 'FansService::instance()->login()';
-        echo FansService::instance()->login();
+        $referer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
+        $log = new Log($this->app);
+        $log->write('referer url:' . $referer);
+        FansService::instance()->login($referer);
     }
 
 }
