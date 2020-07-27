@@ -36,7 +36,7 @@ return [
             // 指定日志类型
             'level'          => ['error', 'alert', 'sql'],
             // 独立日志级别
-            'apart_level'    => ['error', 'sql'],
+            'apart_level'    => ['error', 'alert', 'sql'],
             // 每个文件大小 ( 10兆 )
             'file_size'      => 1024 * 1024 * 10,
             // 日志日期格式

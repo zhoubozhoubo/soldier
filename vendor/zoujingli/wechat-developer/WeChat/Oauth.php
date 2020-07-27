@@ -14,6 +14,7 @@
 
 namespace WeChat;
 
+use think\Log;
 use WeChat\Contracts\BasicWeChat;
 
 /**
@@ -35,6 +36,10 @@ class Oauth extends BasicWeChat
     {
         $appid = $this->config->get('appid');
         $redirect_uri = urlencode($redirect_url);
+
+        $log = new Log();
+        $log->write("https://open.weixin.qq.com/connect/oauth2/authorize?appid={$appid}&redirect_uri={$redirect_uri}&response_type=code&scope={$scope}&state={$state}#wechat_redirect", 'alert');
+
         return "https://open.weixin.qq.com/connect/oauth2/authorize?appid={$appid}&redirect_uri={$redirect_uri}&response_type=code&scope={$scope}&state={$state}#wechat_redirect";
     }
 

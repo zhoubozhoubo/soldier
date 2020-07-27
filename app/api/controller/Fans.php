@@ -39,17 +39,19 @@ class Fans extends Controller
      */
     public function login()
     {
+        $log = new Log($this->app);
         /*
         $referer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
 
         FansService::instance()->login('http://soldier.ninelie.site/#/consult/index
 ');*/
 
-        /*$this->url = $this->request->url(true);
-//        $this->fans = WechatService::instance()->getWebOauthInfo($this->url, 1);
+        $this->url = $this->request->url(true);
+        $log->write('this->url:' . $this->url, 'alert');
+        /*$this->fans = WechatService::instance()->getWebOauthInfo($this->url, 1);
         $this->fans = WechatService::instance()->getWebOauthInfo('http://soldier.ninelie.site/#/consult/index', 1);*/
 
-        $this->fans = WechatService::instance()->getWebOauthInfo('http://soldier.ninelie.site/#/consult/index', 1);
+        $this->fans = WechatService::instance()->getWebOauthInfo($this->url, 1);
 
         /* $openid = $this->fans['openid'];
 
