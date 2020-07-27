@@ -228,16 +228,20 @@ class WechatService extends Service
             if (input('state') !== $appid) {
                 $snsapi = empty($isfull) ? 'snsapi_base' : 'snsapi_userinfo';
                 $param = (strpos($source, '?') !== false ? '&' : '?') . 'rcode=' . enbase64url($source);
+                print_r(1);
                 $oauthurl = $wechat->getOauthRedirect($source . $param, $appid, $snsapi);
+                print_r(2);
                 if ($redirect) throw new HttpResponseException(redirect($oauthurl, 301));
                 exit("window.location.href='{$oauthurl}'");
             }
             if (($token = $wechat->getOauthAccessToken()) && isset($token['openid'])) {
+                print_r(3);
                 $this->app->session->set("{$appid}_openid", $openid = $token['openid']);
                 if (empty($isfull) && input('rcode')) {
                     throw new HttpResponseException(redirect(debase64url(input('rcode')), 301));
                 }
                 $this->app->session->set("{$appid}_fansinfo", $fansinfo = $wechat->getUserInfo($token['access_token'], $openid));
+                print_r(4);
                 empty($fansinfo) || FansService::instance()->set($fansinfo);
             }
             throw new HttpResponseException(redirect(debase64url(input('rcode')), 301));
