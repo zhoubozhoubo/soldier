@@ -18,7 +18,6 @@ namespace app\wechat\service;
 use think\admin\extend\JsonRpcClient;
 use think\admin\Service;
 use think\exception\HttpResponseException;
-use think\Log;
 
 /**
  * Class WechatService
@@ -217,8 +216,6 @@ class WechatService extends Service
      */
     public function getWebOauthInfo($source, $isfull = 0, $redirect = true)
     {
-        $log = new Log($this->app);
-
         $appid = $this->getAppid();
         $openid = $this->app->session->get("{$appid}_openid");
         $fansinfo = $this->app->session->get("{$appid}_fansinfo");
@@ -231,22 +228,11 @@ class WechatService extends Service
             if (input('state') !== $appid) {
                 $snsapi = empty($isfull) ? 'snsapi_base' : 'snsapi_userinfo';
                 $param = (strpos($source, '?') !== false ? '&' : '?') . 'rcode=' . enbase64url($source);
-
-                $log->write('source:' . $source . $param, 'alert');
-
                 $oauthurl = $wechat->getOauthRedirect($source . $param, $appid, $snsapi);
-
-                $log->write('oauthurl:' . $oauthurl, 'alert');
-
                 if ($redirect) throw new HttpResponseException(redirect($oauthurl, 301));
                 exit("window.location.href='{$oauthurl}'");
             }
-
-            $log->write('next:::', 'alert');
             if (($token = $wechat->getOauthAccessToken()) && isset($token['openid'])) {
-
-                $log->write('token:' . $token, 'alert');
-
                 $this->app->session->set("{$appid}_openid", $openid = $token['openid']);
                 if (empty($isfull) && input('rcode')) {
                     throw new HttpResponseException(redirect(debase64url(input('rcode')), 301));
