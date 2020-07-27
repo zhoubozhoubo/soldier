@@ -235,6 +235,9 @@ class WechatService extends Service
                 $log->write('source:' . $source . $param, 'alert');
 
                 $oauthurl = $wechat->getOauthRedirect($source . $param, $appid, $snsapi);
+
+                $log->write('oauthurl:' . $oauthurl, 'alert');
+
                 if ($redirect) throw new HttpResponseException(redirect($oauthurl, 301));
                 exit("window.location.href='{$oauthurl}'");
             }
