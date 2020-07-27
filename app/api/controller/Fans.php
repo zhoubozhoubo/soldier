@@ -40,7 +40,8 @@ class Fans extends Controller
     {
         $referer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
 
-        FansService::instance()->login($referer);
+        FansService::instance()->login('http://soldier.ninelie.site/#/consult/index
+');
     }
 
 }

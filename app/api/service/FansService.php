@@ -42,7 +42,7 @@ class FansService extends Service
     {
         $info = WechatService::instance()->getWebOauthInfo($referer);
 
-        $openid = $info['openid'];
+        /*$openid = $info['openid'];
 
         if ($this->app->db->name('WechatFans')->where(['openid' => $openid])->count() === 0) {
             $this->app->db->name('WechatFans')->save(['openid'=>$openid]);
@@ -53,7 +53,7 @@ class FansService extends Service
         $token = token($openid);
         session($token, json_encode($fans));
 
-        return $token;
+        return $token;*/
     }
 
 }
