@@ -40,9 +40,10 @@ class FansService extends Service
      */
     public function login($referer)
     {
-        $info = WechatService::instance()->getWebOauthInfo($referer);
+        /*$info = WechatService::instance()->getWebOauthInfo($referer);
+        $this->fans = WechatService::instance()->getWebOauthInfo('http://soldier.ninelie.site/#/consult/index', 1);
 
-        /*$openid = $info['openid'];
+        $openid = $info['openid'];
 
         if ($this->app->db->name('WechatFans')->where(['openid' => $openid])->count() === 0) {
             $this->app->db->name('WechatFans')->save(['openid'=>$openid]);
