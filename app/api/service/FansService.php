@@ -41,16 +41,19 @@ class FansService extends Service
     public function login($referer)
     {
         $info = WechatService::instance()->getWebOauthInfo($referer);
-        $log = new \think\facade\Log();
-        $log->write('info json:' . json_encode($info));
 
-        /*$openid = '123456';
+        $openid = $info['openid'];
+
+        if ($this->app->db->name('WechatFans')->where(['openid' => $openid])->count() === 0) {
+            $this->app->db->name('WechatFans')->save(['openid'=>$openid]);
+        }
+
         $fans = $this->app->db->name('WechatFans')->where(['openid' => $openid])->find();
 
         $token = token($openid);
         session($token, json_encode($fans));
 
-        return $token;*/
+        return $token;
     }
 
 }

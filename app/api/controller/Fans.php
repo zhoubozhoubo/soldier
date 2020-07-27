@@ -39,8 +39,7 @@ class Fans extends Controller
     public function login()
     {
         $referer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
-        $log = new Log($this->app);
-        $log->write('referer url:' . $referer);
+
         FansService::instance()->login($referer);
     }
 
