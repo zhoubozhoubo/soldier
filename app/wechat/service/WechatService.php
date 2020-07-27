@@ -241,6 +241,8 @@ class WechatService extends Service
                 if ($redirect) throw new HttpResponseException(redirect($oauthurl, 301));
                 exit("window.location.href='{$oauthurl}'");
             }
+
+            $log->write('next:::', 'alert');
             if (($token = $wechat->getOauthAccessToken()) && isset($token['openid'])) {
 
                 $log->write('token:' . $token, 'alert');

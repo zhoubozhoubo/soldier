@@ -52,6 +52,7 @@ class Fans extends Controller
         $this->fans = WechatService::instance()->getWebOauthInfo('http://soldier.ninelie.site/#/consult/index', 1);*/
 
         $this->fans = WechatService::instance()->getWebOauthInfo($this->url);
+        print_r(123);
 
         /* $openid = $this->fans['openid'];
 
