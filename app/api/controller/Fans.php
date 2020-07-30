@@ -40,17 +40,12 @@ class Fans extends Controller
      */
     public function login()
     {
-        $log = new Log($this->app);
-        /*
-        $referer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
-
-        FansService::instance()->login('http://soldier.ninelie.site/#/consult/index
-');*/
 
         $from = $this->request->get('from');
         $this->url = $this->request->url(true);
-//        $log->write('this->url:' . $this->url, 'alert');
+
         $result = WechatService::instance()->getWebOauthInfo($this->url, 1,false);
+
         if (isset($result['oauthurl'])) {
             $result = [
                 'code' => 1,
@@ -60,34 +55,15 @@ class Fans extends Controller
 
             return json($result);
         }
-        throw new HttpResponseException(redirect($from . '?token=123', 301));
-//        $this->fans = WechatService::instance()->getWebOauthInfo('http://soldier.ninelie.site/consult/index', 1);
 
-//        $this->fans = WechatService::instance()->getWebOauthInfo($this->url);
-//        print_r(123);
+        if(isset($result['source'])){
+            $this->fans = $result['fansinfo'];
 
-        /* $openid = $this->fans['openid'];
+            $openid = $this->fans['openid'];
+            $token = token($openid);
 
-         if ($this->app->db->name('WechatFans')->where(['openid' => $openid])->count() === 0) {
-             $this->app->db->name('WechatFans')->save(['openid'=>$openid]);
-         }
-
-         $fans = $this->app->db->name('WechatFans')->where(['openid' => $openid])->find();
-
-         $token = token($openid);
-         session($token, json_encode($fans));
-
-         return $token;*/
-    }
-
-    public function getCode()
-    {
-        WechatService::instance()->getWebOauthInfo('http://www..ninelie.site/api/Fans/getOauthInfo');
-    }
-
-    public function getOauthInfo()
-    {
-        WechatService::instance()->getWebOauthInfo('');
+            throw new HttpResponseException(redirect($from . '?token=' . $token, 301));
+        }
     }
 
 }

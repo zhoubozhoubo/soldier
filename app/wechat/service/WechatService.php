@@ -240,7 +240,7 @@ class WechatService extends Service
                 }
                 $this->app->session->set("{$appid}_fansinfo", $fansinfo = $wechat->getUserInfo($token['access_token'], $openid));
                 empty($fansinfo) || FansService::instance()->set($fansinfo);
-                return ['source' => $source];
+                return ['source' => $source, 'fansinfo' => $fansinfo];
             }
             throw new HttpResponseException(redirect(debase64url(input('rcode')), 301));
         } else {
