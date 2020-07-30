@@ -55,22 +55,18 @@ class Fans extends Controller
 //        $this->fans = WechatService::instance()->getWebOauthInfo($this->url);
 //        print_r(123);
 
-         $openid = $this->fans['openid'];
+        $openid = $this->fans['openid'];
 
-         $token = token($openid);
-         session($token, json_encode($this->fans));
+        $token = token($openid);
+        session($token, json_encode($this->fans));
 
-         return $token;
-    }
+        $result = [
+            'code' => 200,
+            'data' => $token,
+            'msg' => '登录成功'
+        ];
 
-    public function getCode()
-    {
-        WechatService::instance()->getWebOauthInfo('http://www..ninelie.site/api/Fans/getOauthInfo');
-    }
-
-    public function getOauthInfo()
-    {
-        WechatService::instance()->getWebOauthInfo('');
+        return json($result);
     }
 
 }
