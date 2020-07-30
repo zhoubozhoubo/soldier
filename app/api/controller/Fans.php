@@ -47,7 +47,6 @@ class Fans extends Controller
 ');*/
 
         $from = $this->request->get('from');
-        print_r($from);return;
 //        $from = $this->request->url(true);
 //        $log->write('this->url:' . $this->url, 'alert');
         $this->fans = WechatService::instance()->getWebOauthInfo($from, 1);
@@ -56,18 +55,12 @@ class Fans extends Controller
 //        $this->fans = WechatService::instance()->getWebOauthInfo($this->url);
 //        print_r(123);
 
-        /* $openid = $this->fans['openid'];
-
-         if ($this->app->db->name('WechatFans')->where(['openid' => $openid])->count() === 0) {
-             $this->app->db->name('WechatFans')->save(['openid'=>$openid]);
-         }
-
-         $fans = $this->app->db->name('WechatFans')->where(['openid' => $openid])->find();
+         $openid = $this->fans['openid'];
 
          $token = token($openid);
-         session($token, json_encode($fans));
+         session($token, json_encode($this->fans));
 
-         return $token;*/
+         return $token;
     }
 
     public function getCode()
