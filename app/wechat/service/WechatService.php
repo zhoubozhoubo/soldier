@@ -233,6 +233,8 @@ class WechatService extends Service
                 exit("window.location.href='{$oauthurl}'");
             }
             if (($token = $wechat->getOauthAccessToken()) && isset($token['openid'])) {
+                print_r($token);
+                return
                 $this->app->session->set("{$appid}_openid", $openid = $token['openid']);
                 if (empty($isfull) && input('rcode')) {
                     throw new HttpResponseException(redirect(debase64url(input('rcode')), 301));
