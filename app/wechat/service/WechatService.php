@@ -216,6 +216,7 @@ class WechatService extends Service
      */
     public function getWebOauthInfo($source, $isfull = 0, $redirect = true)
     {
+        $this->app->session->clear();
         $appid = $this->getAppid();
         $openid = $this->app->session->get("{$appid}_openid");
         $fansinfo = $this->app->session->get("{$appid}_fansinfo");
