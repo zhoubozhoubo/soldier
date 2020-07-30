@@ -49,7 +49,7 @@ class Fans extends Controller
 //        $from = $this->request->get('from');
         $from = $this->request->url(true);
 //        $log->write('this->url:' . $this->url, 'alert');
-        $result = WechatService::instance()->getWebOauthInfo($from, 1);
+        $result = WechatService::instance()->getWebOauthInfo($from, 1,false);
         if (isset($result['oauthurl'])) {
             return $result['oauthurl'];
         }
