@@ -59,6 +59,15 @@ class Fans extends Controller
 
             return json($result);
         }
+        if (isset($result['source'])) {
+            $result = [
+                'code' => 2,
+                'data' => $result['source'],
+                'msg' => '授权回调页'
+            ];
+
+            return json($result);
+        }
 //        $this->fans = WechatService::instance()->getWebOauthInfo('http://soldier.ninelie.site/consult/index', 1);
 
 //        $this->fans = WechatService::instance()->getWebOauthInfo($this->url);
