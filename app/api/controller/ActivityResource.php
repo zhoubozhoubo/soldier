@@ -41,7 +41,7 @@ class ActivityResource extends BaseApi
         $where['activity_type_id'] = $activity_type_id;
         $where['resource_type'] = $resource_type;
 
-        $data = $this->BaseAll($this->table, $where);
+        $data = $this->BaseAll($this->table, $where, 'sort asc, create_at desc');
 
         return $this->returnSuccess($data);
     }
@@ -56,7 +56,7 @@ class ActivityResource extends BaseApi
         $where['activity_type_id'] = $activity_type_id;
         $where['resource_type'] = $resource_type;
 
-        $data = $this->BasePage($this->table, $where);
+        $data = $this->BasePage($this->table, $where, 'sort asc, create_at desc');
 
         return $this->returnSuccess($data);
     }

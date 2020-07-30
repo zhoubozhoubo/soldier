@@ -54,7 +54,7 @@ class Consult extends Controller
             $query->where(['is_deleted' => '0', 'status' => '0']);
         }
         // 列表排序并显示
-        $query->order('id desc')->page();
+        $query->order('create_at desc, id desc')->page();
     }
 
     /**

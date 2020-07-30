@@ -39,7 +39,7 @@ class HelpSpot extends BaseApi
         $spot_type = $this->request->get('spot_type');
         $where['spot_type'] = $spot_type;
 
-        $data = $this->BaseAll($this->table, $where);
+        $data = $this->BaseAll($this->table, $where, 'sort asc, create_at desc');
 
         return $this->returnSuccess($data);
     }
@@ -52,7 +52,7 @@ class HelpSpot extends BaseApi
         $spot_type = $this->request->get('spot_type');
         $where['spot_type'] = $spot_type;
 
-        $data = $this->BasePage($this->table, $where);
+        $data = $this->BasePage($this->table, $where, 'sort asc, create_at desc');
 
         return $this->returnSuccess($data);
     }

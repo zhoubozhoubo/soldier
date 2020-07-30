@@ -34,7 +34,7 @@ class ActivityType extends BaseApi
      */
     public function getAll()
     {
-        $data = $this->BaseAll($this->table);
+        $data = $this->BaseAll($this->table, [], 'sort asc, create_at desc');
 
         return $this->returnSuccess($data);
     }
@@ -44,7 +44,7 @@ class ActivityType extends BaseApi
      */
     public function getPage()
     {
-        $data = $this->BasePage($this->table);
+        $data = $this->BasePage($this->table, [], 'sort asc, create_at desc');
 
         return $this->returnSuccess($data);
     }

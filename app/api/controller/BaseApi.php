@@ -39,6 +39,14 @@ class BaseApi extends Controller
     {
         $this->app = $app;
 
+        if (isset($_SERVER['HTTP_TOKEN']) && !empty($_SERVER['HTTP_TOKEN'])) {
+            $this->token = $_SERVER['HTTP_TOKEN'];
+        }
+
+        if (isset($this->token) && !empty($this->token)) {
+            $this->fans = json_decode(session($this->token), true);
+            $this->currentFansId = $this->fans['id'];
+        }
         /*if (!$this->fans) {
             return $this->error('未登录，请先登录');
         }
@@ -52,15 +60,6 @@ class BaseApi extends Controller
 
     protected function initialize()
     {
-        if (isset($_SERVER['HTTP_TOKEN']) && !empty($_SERVER['HTTP_TOKEN'])) {
-            $this->token = $_SERVER['HTTP_TOKEN'];
-        }
-
-        if (isset($this->token) && !empty($this->token)) {
-            $this->fans = json_decode(session($this->token), true);
-            $this->currentFansId = $this->fans['id'];
-        }
-
         $getData = $this->request->get();
 
         if (isset($getData['size']) && !empty($getData['size'])) {
@@ -75,7 +74,7 @@ class BaseApi extends Controller
         }
     }
 
-    public function BaseAll($table, $where = [])
+    public function BaseAll($table, $where = [], $order = 'create_at desc')
     {
         if (!$this->request->isGet()) {
             return $this->error('请求方式错误');
@@ -84,7 +83,7 @@ class BaseApi extends Controller
         $where['is_deleted'] = 0;
         $where['status'] = 1;
 
-        $list = $this->app->db->name($table)->where($where)->select();
+        $list = $this->app->db->name($table)->where($where)->order($order)->select();
         $count = $this->app->db->name($table)->where($where)->count();
 
         $content = [
@@ -95,7 +94,7 @@ class BaseApi extends Controller
         return $content;
     }
 
-    public function BasePage($table, $where = [])
+    public function BasePage($table, $where = [], $order = 'create_at desc')
     {
         if (!$this->request->isGet()) {
             return $this->error('请求方式错误');
@@ -104,7 +103,7 @@ class BaseApi extends Controller
         $where['is_deleted'] = 0;
         $where['status'] = 1;
 
-        $list = $this->app->db->name($table)->where($where)->page($this->page, $this->size)->select();
+        $list = $this->app->db->name($table)->where($where)->order($order)->page($this->page, $this->size)->select();
         $count = $this->app->db->name($table)->where($where)->count();
         $pages = ceil($count/$this->size);
 

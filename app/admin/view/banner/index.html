@@ -7,7 +7,7 @@
 <button data-modal='{:url("add")}' data-title="添加banner信息" class='layui-btn layui-btn-sm layui-btn-primary'>添加banner信息</button>
 <!--{/if}-->
 <!--{if auth("state")}-->
-<a data-confirm="确定要启用该banner信息吗？" data-action="{:url('state')}" data-rule="id#{key};status#0" data-csrf="{:systoken('state')}" class='layui-btn layui-btn-sm layui-btn-primary'>批量禁用</a>
+<!--<a data-confirm="确定要启用该banner信息吗？" data-action="{:url('state')}" data-rule="id#{key};status#0" data-csrf="{:systoken('state')}" class='layui-btn layui-btn-sm layui-btn-primary'>批量禁用</a>-->
 <!--{/if}-->
 {else}
 <!--{if auth("state")}-->
@@ -37,9 +37,9 @@
             {notempty name='list'}
             <thead>
             <tr>
-                <th class='list-table-check-td think-checkbox'>
+                <!--<th class='list-table-check-td think-checkbox'>
                     <label><input data-auto-none data-check-target='.list-check-box' type='checkbox'></label>
-                </th>
+                </th>-->
                 <th class='list-table-sort-td'>
                     <button type="button" data-reload class="layui-btn layui-btn-xs">刷 新</button>
                 </th>
@@ -53,9 +53,9 @@
             <tbody>
             {foreach $list as $key=>$vo}
             <tr data-dbclick>
-                <td class='list-table-check-td think-checkbox'>
+                <!--<td class='list-table-check-td think-checkbox'>
                     <label><input class="list-check-box" value='{$vo.id}' type='checkbox'></label>
-                </td>
+                </td>-->
                 <td class='list-table-sort-td'>
                     <label><input data-action-blur="{:request()->url()}" data-value="id#{$vo.id};action#sort;sort#{value}" data-loading="false" value="{$vo.sort}" class="list-sort-input"></label>
                 </td>
