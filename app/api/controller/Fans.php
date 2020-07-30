@@ -46,27 +46,37 @@ class Fans extends Controller
         FansService::instance()->login('http://soldier.ninelie.site/#/consult/index
 ');*/
 
-        $from = $this->request->get('from');
-//        $from = $this->request->url(true);
+//        $from = $this->request->get('from');
+        $from = $this->request->url(true);
 //        $log->write('this->url:' . $this->url, 'alert');
-        WechatService::instance()->getWebOauthInfo($from, 1);
+        $this->fans = WechatService::instance()->getWebOauthInfo($from, 1);
 //        $this->fans = WechatService::instance()->getWebOauthInfo('http://soldier.ninelie.site/consult/index', 1);
 
 //        $this->fans = WechatService::instance()->getWebOauthInfo($this->url);
 //        print_r(123);
 
-        /*$openid = $this->fans['openid'];
+        /* $openid = $this->fans['openid'];
 
-        $token = token($openid);
-        session($token, json_encode($this->fans));
+         if ($this->app->db->name('WechatFans')->where(['openid' => $openid])->count() === 0) {
+             $this->app->db->name('WechatFans')->save(['openid'=>$openid]);
+         }
 
-        $result = [
-            'code' => 200,
-            'data' => $token,
-            'msg' => '登录成功'
-        ];
+         $fans = $this->app->db->name('WechatFans')->where(['openid' => $openid])->find();
 
-        return json($result);*/
+         $token = token($openid);
+         session($token, json_encode($fans));
+
+         return $token;*/
+    }
+
+    public function getCode()
+    {
+        WechatService::instance()->getWebOauthInfo('http://www..ninelie.site/api/Fans/getOauthInfo');
+    }
+
+    public function getOauthInfo()
+    {
+        WechatService::instance()->getWebOauthInfo('');
     }
 
 }
