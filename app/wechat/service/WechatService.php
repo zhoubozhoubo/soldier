@@ -229,10 +229,14 @@ class WechatService extends Service
                 $snsapi = empty($isfull) ? 'snsapi_base' : 'snsapi_userinfo';
                 $param = (strpos($source, '?') !== false ? '&' : '?') . 'rcode=' . enbase64url($source);
                 $oauthurl = $wechat->getOauthRedirect($source . $param, $appid, $snsapi);
+                print_r($oauthurl);
+                return;
                 if ($redirect) throw new HttpResponseException(redirect($oauthurl, 301));
                 exit("window.location.href='{$oauthurl}'");
             }
             if (($token = $wechat->getOauthAccessToken()) && isset($token['openid'])) {
+                print_r($token);
+                return;
                 $this->app->session->set("{$appid}_openid", $openid = $token['openid']);
                 if (empty($isfull) && input('rcode')) {
                     throw new HttpResponseException(redirect(debase64url(input('rcode')), 301));
