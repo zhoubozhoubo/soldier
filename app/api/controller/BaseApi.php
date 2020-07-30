@@ -38,14 +38,6 @@ class BaseApi extends Controller
     public function __construct(App $app)
     {
         $this->app = $app;
-        if (isset($_SERVER['HTTP_TOKEN']) && !empty($_SERVER['HTTP_TOKEN'])) {
-            $this->token = $_SERVER['HTTP_TOKEN'];
-        }
-
-        if (isset($this->token) && !empty($this->token)) {
-            $this->fans = json_decode(session($this->token), true);
-            $this->currentFansId = $this->fans['id'];
-        }
 
         /*if (!$this->fans) {
             return $this->error('未登录，请先登录');
@@ -60,6 +52,15 @@ class BaseApi extends Controller
 
     protected function initialize()
     {
+        if (isset($_SERVER['HTTP_TOKEN']) && !empty($_SERVER['HTTP_TOKEN'])) {
+            $this->token = $_SERVER['HTTP_TOKEN'];
+        }
+
+        if (isset($this->token) && !empty($this->token)) {
+            $this->fans = json_decode(session($this->token), true);
+            $this->currentFansId = $this->fans['id'];
+        }
+        
         $getData = $this->request->get();
 
         if (isset($getData['size']) && !empty($getData['size'])) {
