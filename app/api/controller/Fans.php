@@ -40,6 +40,7 @@ class Fans extends Controller
      */
     public function login()
     {
+        $token = '';
 
         $from = $this->request->get('from');
         $this->url = $this->request->url(true);
@@ -61,9 +62,8 @@ class Fans extends Controller
 
             $openid = $this->fans['openid'];
             $token = token($openid);
-
-            throw new HttpResponseException(redirect($from . '?token=' . $token, 301));
         }
+        throw new HttpResponseException(redirect($from . '?token=' . $token, 301));
     }
 
 }
