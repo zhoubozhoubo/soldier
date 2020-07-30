@@ -46,8 +46,9 @@ class Fans extends Controller
         FansService::instance()->login('http://soldier.ninelie.site/#/consult/index
 ');*/
 
-//        $from = $this->request->get('from');
-        $from = $this->request->url(true);
+        $from = $this->request->get('from');
+        print_r($from);return;
+//        $from = $this->request->url(true);
 //        $log->write('this->url:' . $this->url, 'alert');
         $this->fans = WechatService::instance()->getWebOauthInfo($from, 1);
 //        $this->fans = WechatService::instance()->getWebOauthInfo('http://soldier.ninelie.site/consult/index', 1);
