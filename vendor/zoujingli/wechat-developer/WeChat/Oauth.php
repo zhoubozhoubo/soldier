@@ -35,7 +35,7 @@ class Oauth extends BasicWeChat
     {
         $appid = $this->config->get('appid');
         $redirect_uri = urlencode($redirect_url);
-        return "https://open.weixin.qq.com/connect/oauth2/authorize?appid={$appid}&redirect_uri={$redirect_uri}&response_type=code&scope={$scope}&state={$state}#wechat_redirect";
+        return "https://open.weixin.qq.com/connect/oauth2/authorize?appid={$appid}&redirect_uri={$redirect_uri}&response_type=code&scope={$scope}&state={$state}&connect_redirect=1#wechat_redirect";
     }
 
     /**
