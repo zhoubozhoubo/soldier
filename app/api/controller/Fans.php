@@ -51,7 +51,13 @@ class Fans extends Controller
 //        $log->write('this->url:' . $this->url, 'alert');
         $result = WechatService::instance()->getWebOauthInfo($from, 1,false);
         if (isset($result['oauthurl'])) {
-            return $result['oauthurl'];
+            $result = [
+                'code' => 1,
+                'data' => $result['oauthurl'],
+                'msg' => '跳转授权页'
+            ];
+
+            return json($result);
         }
 //        $this->fans = WechatService::instance()->getWebOauthInfo('http://soldier.ninelie.site/consult/index', 1);
 
