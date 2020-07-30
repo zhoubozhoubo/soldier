@@ -63,7 +63,8 @@ class Fans extends Controller
             $openid = $this->fans['openid'];
             $token = token($openid);
         }
-        throw new HttpResponseException(redirect($from . '?token=' . $token, 301));
+        return $from . '?token=' . $token;
+//        throw new HttpResponseException(redirect($from . '?token=' . $token, 301));
     }
 
 }
