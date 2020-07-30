@@ -49,18 +49,10 @@ class Consult extends BaseApi
      */
     public function getPage()
     {
-
-//        $log = new Log($this->app);
-//        $this->url = $this->request->url(true);
-//        $log->write('this->url:' . $this->url, 'alert');
-
-//        $this->fans = WechatService::instance()->getWebOauthInfo($this->url);
-
         $where['wechat_fans_id'] = $this->currentFansId;
         $data = $this->BasePage($this->table, $where);
 
         return $this->returnSuccess($data);
-//        return $this->returnSuccess([]);
     }
 
     /**

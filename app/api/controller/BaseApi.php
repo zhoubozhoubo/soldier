@@ -38,7 +38,7 @@ class BaseApi extends Controller
     public function __construct(App $app)
     {
         $this->app = $app;
-        /*if (isset($_SERVER['HTTP_TOKEN']) && !empty($_SERVER['HTTP_TOKEN'])) {
+        if (isset($_SERVER['HTTP_TOKEN']) && !empty($_SERVER['HTTP_TOKEN'])) {
             $this->token = $_SERVER['HTTP_TOKEN'];
         }
 
@@ -47,7 +47,7 @@ class BaseApi extends Controller
             $this->currentFansId = $this->fans['id'];
         }
 
-        if (!$this->fans) {
+        /*if (!$this->fans) {
             return $this->error('未登录，请先登录');
         }
 
