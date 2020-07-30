@@ -18,6 +18,7 @@ namespace app\api\controller;
 use app\api\service\FansService;
 use app\wechat\service\WechatService;
 use think\admin\Controller;
+use think\exception\HttpResponseException;
 use think\Log;
 
 /**
@@ -59,7 +60,7 @@ class Fans extends Controller
 
             return json($result);
         }
-        return "window.location.href='{$from}'";
+        throw new HttpResponseException(redirect($from . '?token=123', 301));
 //        $this->fans = WechatService::instance()->getWebOauthInfo('http://soldier.ninelie.site/consult/index', 1);
 
 //        $this->fans = WechatService::instance()->getWebOauthInfo($this->url);
