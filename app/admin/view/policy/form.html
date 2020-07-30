@@ -3,12 +3,10 @@
 
         <div class="layui-row layui-col-space15">
             <div class="layui-col-xs2 text-center">
-                <label class="block relative">
-                    <span class="color-green font-w7">图片</span>
-                    <span class="color-desc margin-left-5">Image</span>
-                    <input type="hidden" name="image" value="{$vo.image|default=''}">
-                    <script>$('[name=image]').uploadOneImage()</script>
-                </label>
+                <span class="color-green font-w7">图片</span>
+                <span class="color-desc margin-left-5">Image</span>
+                <input type="hidden" name="image" value="{$vo.image|default=''}">
+                <script>$('[name=image]').uploadOneImage()</script>
             </div>
             <div class="layui-col-xs9 layui-col-lg-offset1">
                 <label class="block relative">
@@ -17,7 +15,7 @@
                     <input name="title" value='{$vo.title|default=""}' required pattern="^.{2,}$" placeholder="请输入标题" class="layui-input">
                 </label>
             </div>
-            <div class="layui-col-xs4 layui-col-lg-offset1">
+            <div class="layui-col-xs3 layui-col-lg-offset1">
                 <label class="block relative">
                     <span class="color-green font-w7">政策类型</span>
                     <span class="color-desc margin-left-5">PolicyType</span>
@@ -32,11 +30,26 @@
                     </select>
                 </label>
             </div>
-            <div class="layui-col-xs4 layui-col-lg-offset1">
+            <div class="layui-col-xs3">
                 <label class="block relative">
                     <span class="color-green font-w7">来源</span>
                     <span class="color-desc margin-left-5">From</span>
                     <input name="from" value='{$vo.from|default=""}' required placeholder="请输入来源" class="layui-input">
+                </label>
+            </div>
+            <div class="layui-col-xs3">
+                <label class="block relative">
+                    <span class="color-green font-w7">是否热点</span>
+                    <span class="color-desc margin-left-5">IsHot</span>
+                    <select name='is_hot' class='layui-select' required>
+                        {foreach ['1'=>'是','0'=>'否'] as $k=>$v}
+                        {eq name='k' value='$vo.is_hot|default=1'}
+                        <option selected value='{$k}'>{$v}</option>
+                        {else}
+                        <option value='{$k}'>{$v}</option>
+                        {/eq}
+                        {/foreach}
+                    </select>
                 </label>
             </div>
         </div>

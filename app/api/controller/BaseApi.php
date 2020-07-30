@@ -60,7 +60,7 @@ class BaseApi extends Controller
             $this->fans = json_decode(session($this->token), true);
             $this->currentFansId = $this->fans['id'];
         }
-        
+
         $getData = $this->request->get();
 
         if (isset($getData['size']) && !empty($getData['size'])) {

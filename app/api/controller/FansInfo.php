@@ -49,8 +49,8 @@ class FansInfo extends Controller
             $this->currentFansId = $this->fans['id'];
         }
 
-        if (!$this->fans) {
-            return $this->error('未登录，请先登录');
+        if (!$this->fans['is_realname']) {
+            return $this->error('未实名认证，请先实名认证');
         }
 
         parent::__construct($app);

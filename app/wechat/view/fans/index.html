@@ -17,7 +17,7 @@
             <th width="60px" class='text-left nowrap'>实名姓名</th>
             <th width="100px" class='text-left nowrap'>实名手机号</th>
             <th width="150px" class='text-left nowrap'>实名身份证号</th>
-            <th>操作</th>
+<!--            <th>操作</th>-->
         </tr>
         </thead>
         {/notempty}
@@ -52,13 +52,13 @@
             <td class='text-left nowrap'>
                 {$vo.id_number|default='--'}
             </td>
-            <td class="nowrap">
+            <!--<td class="nowrap">
 
                 {if auth("remove")}
                 <a class="layui-btn layui-btn-sm layui-btn-danger" data-action="{:url('remove')}" data-value="id#{$vo.id}" data-csrf="{:systoken('remove')}" data-confirm="确定要删除该用户吗？">删 除</a>
                 {/if}
 
-            </td>
+            </td>-->
         </tr>
         {/foreach}
         </tbody>
