@@ -52,7 +52,7 @@ class Policy extends Controller
             $query->where(['is_deleted' => '0', 'status' => '0']);
         }
         // 列表排序并显示
-        $query->order('sort asc, create_at desc, id desc')->page();
+        $query->order('policy_type asc, sort asc, create_at desc, id desc')->page();
     }
 
     /**
