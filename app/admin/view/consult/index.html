@@ -4,7 +4,7 @@
 
 {if isset($type) and $type eq 'all'}
 <!--{if auth("state")}-->
-<a data-confirm="确定要启用该咨询信息吗？" data-action="{:url('state')}" data-rule="id#{key};status#0" data-csrf="{:systoken('state')}" class='layui-btn layui-btn-sm layui-btn-primary'>批量禁用</a>
+<a data-confirm="确定要禁用该咨询信息吗？" data-action="{:url('state')}" data-rule="id#{key};status#0" data-csrf="{:systoken('state')}" class='layui-btn layui-btn-sm layui-btn-primary'>批量禁用</a>
 <!--{/if}-->
 {else}
 <!--{if auth("state")}-->

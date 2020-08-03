@@ -10,7 +10,7 @@
 <button data-modal='{:url("add")}?resource_type=2' data-title="添加活动图片资源" class='layui-btn layui-btn-sm layui-btn-primary'>添加活动图片资源</button>
 <!--{/if}-->
 <!--{if auth("state")}-->
-<a data-confirm="确定要启用该活动资源吗？" data-action="{:url('state')}" data-rule="id#{key};status#0" data-csrf="{:systoken('state')}" class='layui-btn layui-btn-sm layui-btn-primary'>批量禁用</a>
+<a data-confirm="确定要禁用该活动资源吗？" data-action="{:url('state')}" data-rule="id#{key};status#0" data-csrf="{:systoken('state')}" class='layui-btn layui-btn-sm layui-btn-primary'>批量禁用</a>
 <!--{/if}-->
 {else}
 <!--{if auth("state")}-->

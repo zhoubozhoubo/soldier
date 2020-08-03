@@ -7,7 +7,7 @@
 <button data-modal='{:url("add")}' data-title="添加退役军人信息" class='layui-btn layui-btn-sm layui-btn-primary'>添加退役军人信息</button>
 <!--{/if}-->
 <!--{if auth("state")}-->
-<a data-confirm="确定要启用该退役军人信息吗？" data-action="{:url('state')}" data-rule="id#{key};status#0" data-csrf="{:systoken('state')}" class='layui-btn layui-btn-sm layui-btn-primary'>批量禁用</a>
+<a data-confirm="确定要禁用该退役军人信息吗？" data-action="{:url('state')}" data-rule="id#{key};status#0" data-csrf="{:systoken('state')}" class='layui-btn layui-btn-sm layui-btn-primary'>批量禁用</a>
 <!--{/if}-->
 {else}
 <!--{if auth("state")}-->
