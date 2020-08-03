@@ -3,7 +3,7 @@
         <label class="layui-form-item block relative">
             <span class="color-green">关于军人e家</span>
             <span class="color-desc margin-left-5">About</span>
-            <textarea ng-model="{:sysconf('about')}" name="about" class="layui-textarea" style="height:80px;line-height:18px">{:sysconf('about')}</textarea>
+            <textarea ng-model="{:sysconf('about')}" name="about">{:sysconf('about')}</textarea>
         </label>
         <div class="hr-line-dashed "></div>
         <div class="layui-form-item text-center">
@@ -12,3 +12,18 @@
         </div>
     </div>
 </form>
+
+{block name='script'}
+<script>
+    require(['angular', 'ckeditor'], function () {
+
+        var editor;
+
+        setTimeout(function () {
+            if (editor) editor.destroy();
+            editor = window.createEditor('[name="about"]');
+        }, 100);
+
+    });
+</script>
+{/block}

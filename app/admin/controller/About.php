@@ -40,6 +40,8 @@ class About extends Controller
     public function index()
     {
         $this->title = '关于军人e家';
+        $about = sysconf('about');
+        $this->assign('about', $about);
         $this->fetch();
     }
 
@@ -57,15 +59,6 @@ class About extends Controller
             $this->title = '修改关于军人e家';
             $this->fetch();
         } else {
-            if ($xpath = $this->request->post('xpath')) {
-                if (!preg_match('/^[a-zA-Z_][a-zA-Z0-9_]+$/', $xpath)) {
-                    $this->error('后台入口名称需要是由英文字母开头！');
-                }
-                if ($xpath !== 'admin' && file_exists($this->app->getBasePath() . $xpath)) {
-                    $this->error("后台入口名称{$xpath}已经存在应用！");
-                }
-                SystemService::instance()->setRuntime([$xpath => 'admin']);
-            }
             foreach ($this->request->post() as $name => $value) sysconf($name, $value);
             $this->success('修改关于军人e家成功！');
         }

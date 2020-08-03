@@ -68,4 +68,17 @@ class Fans extends Controller
         throw new HttpResponseException(redirect($from . '?token=' . $token, 301));
     }
 
+    public function loginTest()
+    {
+        $from = $this->request->get('from');
+
+        $this->fans = $this->app->db->name($this->table)->where(['openid' => '123'])->find();
+
+        $openid = $this->fans['openid'];
+        $token = token($openid);
+        session($token, json_encode($this->fans));
+
+        return $token;
+    }
+
 }

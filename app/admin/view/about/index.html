@@ -13,8 +13,8 @@
     <div class="layui-form-item">
         <div class="color-green font-w7">关于军人e家</div>
         <label class="relative block">
-            <textarea ng-model="{:sysconf('about')}" readonly name="about" class="layui-textarea layui-bg-gray" style="height:80px;line-height:18px">{:sysconf('about')}</textarea>
-            <a data-copy="{:sysconf('about')}" class="fa fa-copy input-right-icon"></a>
+<!--            <textarea ng-model="{$about}" readonly class="layui-textarea layui-bg-gray" style="height:80px;line-height:18px"></textarea>-->
+            {$about|default=''|htmlspecialchars_decode}
         </label>
         <div class="help-block">关于军人e家介绍说明</div>
     </div>

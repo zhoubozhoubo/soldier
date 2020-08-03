@@ -47,6 +47,7 @@ class BaseApi extends Controller
             $this->fans = json_decode(session($this->token), true);
             $this->currentFansId = $this->fans['id'];
         }
+
         /*if (!$this->fans) {
             return $this->error('未登录，请先登录');
         }

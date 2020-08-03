@@ -11,7 +11,7 @@
  Target Server Version : 100406
  File Encoding         : 65001
 
- Date: 24/07/2020 10:46:43
+ Date: 02/08/2020 00:16:27
 */
 
 SET NAMES utf8mb4;
@@ -231,8 +231,8 @@ INSERT INTO `system_config` VALUES ('storage', 'qiniu_access_key', '');
 INSERT INTO `system_config` VALUES ('storage', 'qiniu_secret_key', '');
 INSERT INTO `system_config` VALUES ('wechat', 'type', 'api');
 INSERT INTO `system_config` VALUES ('wechat', 'token', 'weixin');
-INSERT INTO `system_config` VALUES ('wechat', 'appid', 'wx222915239e8ebe8f');
-INSERT INTO `system_config` VALUES ('wechat', 'appsecret', '6f87b8d2202b9dc8a200e9addebe6995');
+INSERT INTO `system_config` VALUES ('wechat', 'appid', 'wx631f3706f8be7f91');
+INSERT INTO `system_config` VALUES ('wechat', 'appsecret', 'e602791c38f2bb053821b33f5db01c05');
 INSERT INTO `system_config` VALUES ('wechat', 'encodingaeskey', '');
 INSERT INTO `system_config` VALUES ('wechat', 'thr_appid', '');
 INSERT INTO `system_config` VALUES ('wechat', 'thr_appkey', '');
@@ -288,31 +288,31 @@ CREATE TABLE `system_menu` (
 -- Records of system_menu
 -- ----------------------------
 BEGIN;
-INSERT INTO `system_menu` VALUES (2, 0, '系统管理', '', '', '#', '', '_self', 100, 1, '2018-09-05 18:04:52');
-INSERT INTO `system_menu` VALUES (3, 4, '系统菜单管理', 'layui-icon layui-icon-layouts', '', 'admin/menu/index', '', '_self', 1, 1, '2018-09-05 18:05:26');
-INSERT INTO `system_menu` VALUES (4, 2, '系统配置', '', '', '#', '', '_self', 20, 1, '2018-09-05 18:07:17');
-INSERT INTO `system_menu` VALUES (5, 12, '系统用户管理', 'layui-icon layui-icon-username', '', 'admin/user/index', '', '_self', 1, 1, '2018-09-06 11:10:42');
-INSERT INTO `system_menu` VALUES (7, 12, '访问权限管理', 'layui-icon layui-icon-vercode', '', 'admin/auth/index', '', '_self', 2, 1, '2018-09-06 15:17:14');
-INSERT INTO `system_menu` VALUES (11, 4, '系统参数配置', 'layui-icon layui-icon-set', '', 'admin/config/index', '', '_self', 4, 1, '2018-09-06 16:43:47');
-INSERT INTO `system_menu` VALUES (12, 2, '权限管理', '', '', '#', '', '_self', 10, 1, '2018-09-06 18:01:31');
-INSERT INTO `system_menu` VALUES (27, 4, '系统任务管理', 'layui-icon layui-icon-log', '', 'admin/queue/index', '', '_self', 3, 0, '2018-11-29 11:13:34');
-INSERT INTO `system_menu` VALUES (49, 4, '系统日志管理', 'layui-icon layui-icon-form', '', 'admin/oplog/index', '', '_self', 2, 1, '2019-02-18 12:56:56');
-INSERT INTO `system_menu` VALUES (56, 0, '微信管理', '', '', '#', '', '_self', 200, 1, '2019-12-09 11:00:37');
-INSERT INTO `system_menu` VALUES (58, 56, '微信接口配置', 'layui-icon layui-icon-set', '', 'wechat/config/options', '', '_self', 0, 1, '2019-12-09 13:57:28');
-INSERT INTO `system_menu` VALUES (60, 56, '微信管理', '', '', '#', '', '_self', 0, 1, '2019-12-09 18:35:16');
-INSERT INTO `system_menu` VALUES (61, 60, '微信粉丝管理', 'layui-icon layui-icon-username', '', 'wechat/fans/index', '', '_self', 0, 1, '2019-12-09 18:35:37');
-INSERT INTO `system_menu` VALUES (62, 2, '军人服务管理', '', '', '#', '', '_self', 0, 1, '2020-06-25 17:32:52');
-INSERT INTO `system_menu` VALUES (63, 62, '咨询列表管理', 'layui-icon layui-icon-form', '', 'admin/consult/index', '', '_self', 0, 1, '2020-07-06 18:04:12');
-INSERT INTO `system_menu` VALUES (64, 62, '点位列表管理', 'layui-icon layui-icon-form', '', 'admin/help_spot/index', '', '_self', 0, 1, '2020-07-06 18:04:12');
-INSERT INTO `system_menu` VALUES (65, 62, '政策列表管理', 'layui-icon layui-icon-form', '', 'admin/policy/index', '', '_self', 0, 1, '2020-07-06 18:04:12');
-INSERT INTO `system_menu` VALUES (66, 62, '招聘列表管理', 'layui-icon layui-icon-form', '', 'admin/recruit/index', '', '_self', 0, 1, '2020-06-25 17:34:06');
-INSERT INTO `system_menu` VALUES (67, 2, '军人动态管理', '', '', '#', '', '_self', 0, 1, '2020-06-25 17:32:52');
-INSERT INTO `system_menu` VALUES (68, 67, '活动系列管理', 'layui-icon layui-icon-form', '', 'admin/activity_type/index', '', '_self', 0, 1, '2020-07-06 18:04:12');
-INSERT INTO `system_menu` VALUES (69, 67, '活动资源管理', 'layui-icon layui-icon-form', '', 'admin/activity_resource/index', '', '_self', 0, 1, '2020-07-06 18:04:12');
-INSERT INTO `system_menu` VALUES (70, 67, '退役军人管理', 'layui-icon layui-icon-form', '', 'admin/soldier/index', '', '_self', 0, 1, '2020-07-06 18:04:12');
-INSERT INTO `system_menu` VALUES (72, 2, '前端配置', '', '', '#', '', '_self', 0, 1, '2020-07-06 18:51:46');
-INSERT INTO `system_menu` VALUES (73, 72, 'banner管理', 'layui-icon layui-icon-form', '', 'admin/banner/index', '', '_self', 0, 1, '2020-07-24 09:58:56');
-INSERT INTO `system_menu` VALUES (74, 72, '关于军人e家', 'layui-icon layui-icon-form', '', 'admin/about/index', '', '_self', 0, 1, '2020-07-06 18:52:46');
+INSERT INTO `system_menu` VALUES (2, 0, '系统管理', '', '', '#', '', '_self', 100, 1, '2018-09-06 02:04:52');
+INSERT INTO `system_menu` VALUES (3, 4, '系统菜单管理', 'layui-icon layui-icon-layouts', '', 'admin/menu/index', '', '_self', 1, 1, '2018-09-06 02:05:26');
+INSERT INTO `system_menu` VALUES (4, 2, '系统配置', '', '', '#', '', '_self', 20, 1, '2018-09-06 02:07:17');
+INSERT INTO `system_menu` VALUES (5, 12, '系统用户管理', 'layui-icon layui-icon-username', '', 'admin/user/index', '', '_self', 1, 1, '2018-09-06 19:10:42');
+INSERT INTO `system_menu` VALUES (7, 12, '访问权限管理', 'layui-icon layui-icon-vercode', '', 'admin/auth/index', '', '_self', 2, 1, '2018-09-06 23:17:14');
+INSERT INTO `system_menu` VALUES (11, 4, '系统参数配置', 'layui-icon layui-icon-set', '', 'admin/config/index', '', '_self', 4, 1, '2018-09-07 00:43:47');
+INSERT INTO `system_menu` VALUES (12, 2, '权限管理', '', '', '#', '', '_self', 10, 1, '2018-09-07 02:01:31');
+INSERT INTO `system_menu` VALUES (27, 4, '系统任务管理', 'layui-icon layui-icon-log', '', 'admin/queue/index', '', '_self', 3, 0, '2018-11-29 19:13:34');
+INSERT INTO `system_menu` VALUES (49, 4, '系统日志管理', 'layui-icon layui-icon-form', '', 'admin/oplog/index', '', '_self', 2, 1, '2019-02-18 20:56:56');
+INSERT INTO `system_menu` VALUES (56, 0, '微信管理', '', '', '#', '', '_self', 200, 1, '2019-12-09 19:00:37');
+INSERT INTO `system_menu` VALUES (58, 56, '微信接口配置', 'layui-icon layui-icon-set', '', 'wechat/config/options', '', '_self', 0, 1, '2019-12-09 21:57:28');
+INSERT INTO `system_menu` VALUES (60, 56, '微信管理', '', '', '#', '', '_self', 0, 1, '2019-12-10 02:35:16');
+INSERT INTO `system_menu` VALUES (61, 60, '微信粉丝管理', 'layui-icon layui-icon-username', '', 'wechat/fans/index', '', '_self', 0, 1, '2019-12-10 02:35:37');
+INSERT INTO `system_menu` VALUES (62, 2, '军人服务管理', '', '', '#', '', '_self', 0, 1, '2020-06-26 01:32:52');
+INSERT INTO `system_menu` VALUES (63, 62, '咨询列表管理', 'layui-icon layui-icon-spread-left', '', 'admin/consult/index', '', '_self', 0, 1, '2020-07-07 02:04:12');
+INSERT INTO `system_menu` VALUES (64, 62, '点位列表管理', 'layui-icon layui-icon-shrink-right', '', 'admin/help_spot/index', '', '_self', 0, 1, '2020-07-07 02:04:12');
+INSERT INTO `system_menu` VALUES (65, 62, '政策列表管理', 'layui-icon layui-icon-form', '', 'admin/policy/index', '', '_self', 0, 1, '2020-07-07 02:04:12');
+INSERT INTO `system_menu` VALUES (66, 62, '招聘列表管理', 'layui-icon layui-icon-form', '', 'admin/recruit/index', '', '_self', 0, 1, '2020-06-26 01:34:06');
+INSERT INTO `system_menu` VALUES (67, 2, '军人动态管理', '', '', '#', '', '_self', 0, 1, '2020-06-26 01:32:52');
+INSERT INTO `system_menu` VALUES (68, 67, '活动系列管理', 'layui-icon layui-icon-form', '', 'admin/activity_type/index', '', '_self', 0, 1, '2020-07-07 02:04:12');
+INSERT INTO `system_menu` VALUES (69, 67, '活动资源管理', 'layui-icon layui-icon-form', '', 'admin/activity_resource/index', '', '_self', 0, 1, '2020-07-07 02:04:12');
+INSERT INTO `system_menu` VALUES (70, 67, '退役军人管理', 'layui-icon layui-icon-form', '', 'admin/soldier/index', '', '_self', 0, 1, '2020-07-07 02:04:12');
+INSERT INTO `system_menu` VALUES (72, 2, '前端配置', '', '', '#', '', '_self', 0, 1, '2020-07-07 02:51:46');
+INSERT INTO `system_menu` VALUES (73, 72, 'banner管理', 'layui-icon layui-icon-form', '', 'admin/banner/index', '', '_self', 0, 1, '2020-07-24 17:58:56');
+INSERT INTO `system_menu` VALUES (74, 72, '关于军人e家', 'layui-icon layui-icon-form', '', 'admin/about/index', '', '_self', 0, 1, '2020-07-07 02:52:46');
 COMMIT;
 
 -- ----------------------------
@@ -391,7 +391,7 @@ CREATE TABLE `system_user` (
 -- Records of system_user
 -- ----------------------------
 BEGIN;
-INSERT INTO `system_user` VALUES (10000, 'admin', '21232f297a57a5a743894a0e4a801fc3', '系统管理员', '', '', '', '', '', '127.0.0.1', '2020-07-24 10:00:48', 1090, '', 1, 0, 0, '2015-11-13 15:14:22');
+INSERT INTO `system_user` VALUES (10000, 'admin', '21232f297a57a5a743894a0e4a801fc3', '系统管理员', '', '', '', '', '', '127.0.0.1', '2020-07-31 20:23:14', 1096, '', 1, 0, 0, '2015-11-13 23:14:22');
 COMMIT;
 
 -- ----------------------------

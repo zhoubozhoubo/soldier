@@ -49,10 +49,6 @@ class FansInfo extends Controller
             $this->currentFansId = $this->fans['id'];
         }
 
-        if (!$this->fans['is_realname']) {
-            return $this->error('未实名认证，请先实名认证');
-        }
-
         parent::__construct($app);
     }
 
@@ -95,10 +91,14 @@ class FansInfo extends Controller
                 //更新session
                 session($this->token, json_encode($fans));
 
-                return $this->success($fans, '认证成功');
+                return $this->success('认证成功', $fans);
             }
         } else {
-            return $this->error('请求错误');
+            if (!$this->fans['is_realname']) {
+                return $this->error('未实名认证，请先实名认证');
+            } else {
+                return $this->success('当前登录用户已实名');
+            }
         }
     }
 

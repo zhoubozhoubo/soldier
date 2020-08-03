@@ -69,4 +69,25 @@ class Consult extends BaseApi
         }
     }
 
+    /**
+     * 添加数据
+     */
+    public function add()
+    {
+        $postData = $this->request->post();
+
+        $data = [
+            'comment' => $postData['comment'],
+            'wechat_fans_id' => $this->currentFansId
+        ];
+
+        $consult = $this->app->db->name($this->table)->save($data);
+
+        if ($consult) {
+            return $this->returnSuccess($consult);
+        } else {
+            return $this->returnError('请求失败，请稍后再试');
+        }
+    }
+
 }
