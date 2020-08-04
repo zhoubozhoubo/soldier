@@ -91,4 +91,23 @@ class Fans extends Controller
         return $this->success('通过code换取成功',$result);
     }
 
+    public function loginToken()
+    {
+        if (isset($_SERVER['HTTP_TOKEN']) && !empty($_SERVER['HTTP_TOKEN'])) {
+            $this->token = $_SERVER['HTTP_TOKEN'];
+        }
+
+        if (isset($this->token) && !empty($this->token)) {
+//            $this->fans = json_decode(session($this->token), true);
+            $this->fans = $this->app->db->name('WechatFans')->where(['openid' => $this->token])->find();
+            $this->currentFansId = $this->fans['id'];
+        }
+
+        if (!$this->fans) {
+            return $this->error('token验证失败', '', 0);
+        }
+
+        return $this->success('token验证通过');
+    }
+
 }
