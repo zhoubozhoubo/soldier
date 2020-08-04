@@ -77,7 +77,12 @@ class Fans extends Controller
         $token = token($openid);
 
         session($token, json_encode($this->fans));
-        return $this->success('获取token成功', $token);
+
+        $data = [
+            'token' => $token,
+            'fans' => session($token)
+        ];
+        return $this->success('获取token成功', $data);
     }
 
     public function loginTest()
