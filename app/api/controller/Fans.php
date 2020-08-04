@@ -41,6 +41,7 @@ class Fans extends Controller
     public function login()
     {
         $token = '';
+        session($token, json_encode($this->fans));
 
         $from = $this->request->get('from');
         $this->url = $this->request->url(true);
