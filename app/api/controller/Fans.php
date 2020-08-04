@@ -61,7 +61,8 @@ class Fans extends Controller
             $this->fans = $result['fansinfo'];
 
             $openid = $this->fans['openid'];
-            $token = token($openid);
+            $token = $this->fans['openid'];
+//            $token = token($openid);
 //            session($token, json_encode($this->fans));
         }
 //        return $from . '?token=' . $token;
@@ -70,9 +71,13 @@ class Fans extends Controller
 
     public function loginToken()
     {
-        $token = $this->request->get('token');
+        $openid = $this->request->get('openid');
+        $this->fans = $this->app->db->name('WechatFans')->where(['openid' => $openid])->find();
+
+        $token = token($openid);
 
         session($token, json_encode($this->fans));
+        return $this->success('获取token成功', $token);
     }
 
     public function loginTest()
