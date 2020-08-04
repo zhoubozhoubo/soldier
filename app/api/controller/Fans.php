@@ -93,9 +93,7 @@ class Fans extends Controller
 
     public function loginToken()
     {
-        if (isset($_SERVER['HTTP_TOKEN']) && !empty($_SERVER['HTTP_TOKEN'])) {
-            $this->token = $_SERVER['HTTP_TOKEN'];
-        }
+        $this->token = $this->request->get('token');
 
         if (isset($this->token) && !empty($this->token)) {
 //            $this->fans = json_decode(session($this->token), true);
