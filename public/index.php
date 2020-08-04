@@ -17,14 +17,14 @@ namespace think;
 
 use think\admin\service\SystemService;
 
-    // 允许的源原域名
-    header('Access-Control-Allow-Origin: *');
-
-    //  允许的请求头信息
-    header("Access-Control-Allow-Headers:Origin, X-requested-width, Content-type, Accept, token");
-
-    // 允许的请求类型
-    header("Access-Control-Allow-Methods:GET, POST, PUT, DELETE, OPTIONS, PATCH");
+//    //  允许的源原域名
+//    header('Access-Control-Allow-Origin: *');
+//
+//    //  允许的请求头信息
+//    header("Access-Control-Allow-Headers:Origin, X-requested-width, Content-type, Accept, token");
+//
+//    // 允许的请求类型
+//    header("Access-Control-Allow-Methods:GET, POST, PUT, DELETE, OPTIONS, PATCH");
 
 require __DIR__ . '/../vendor/autoload.php';
 
