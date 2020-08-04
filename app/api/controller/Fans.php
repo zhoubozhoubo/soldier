@@ -41,7 +41,6 @@ class Fans extends Controller
     public function login()
     {
         $token = '';
-        session($token, json_encode($this->fans));
 
         $from = $this->request->get('from');
         $this->url = $this->request->url(true);
@@ -63,10 +62,17 @@ class Fans extends Controller
 
             $openid = $this->fans['openid'];
             $token = token($openid);
-            session($token, json_encode($this->fans));
+//            session($token, json_encode($this->fans));
         }
 //        return $from . '?token=' . $token;
         throw new HttpResponseException(redirect($from . '?token=' . $token, 301));
+    }
+
+    public function loginToken()
+    {
+        $token = $this->request->get('token');
+
+        session($token, json_encode($this->fans));
     }
 
     public function loginTest()
