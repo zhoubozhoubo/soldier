@@ -69,33 +69,23 @@ class Fans extends Controller
         throw new HttpResponseException(redirect($from . '?token=' . $token, 301));
     }
 
-    public function loginToken()
+    public function loginOauth()
     {
-        $openid = $this->request->get('openid');
-        $this->fans = $this->app->db->name('WechatFans')->where(['openid' => $openid])->find();
+        $from = $this->request->get('from');
+        $from = 'http://soldier.ninelie.site/#/policy/index';
 
-        $token = token($openid);
+        $result = WechatService::instance()->getWebOauthInfo($from, 1,false);
 
-        session($token, json_encode($this->fans));
-
-        $data = [
-            'token' => $token,
-            'fans' => session($token)
-        ];
-        return $this->success('获取token成功', $data);
+        return $this->success('跳转授权页成功',$result);
     }
 
-    public function loginTest()
+    public function loginCode()
     {
         $from = $this->request->get('from');
 
-        $this->fans = $this->app->db->name($this->table)->where(['openid' => '123'])->find();
+        $result = WechatService::instance()->getWebOauthInfo($from, 1,false);
 
-        $openid = $this->fans['openid'];
-        $token = token($openid);
-        session($token, json_encode($this->fans));
-
-        return $token;
+        return $this->success('通过code换取成功',$result);
     }
 
 }
