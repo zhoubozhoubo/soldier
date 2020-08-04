@@ -44,7 +44,8 @@ class BaseApi extends Controller
         }
 
         if (isset($this->token) && !empty($this->token)) {
-            $this->fans = json_decode(session($this->token), true);
+//            $this->fans = json_decode(session($this->token), true);
+            $this->fans = $this->app->db->name('WechatFans')->where(['openid' => $this->token])->find();
             $this->currentFansId = $this->fans['id'];
         }
 
