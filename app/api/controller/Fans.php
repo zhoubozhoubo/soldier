@@ -72,7 +72,7 @@ class Fans extends Controller
     public function loginOauth()
     {
         $from = $this->request->get('from');
-        $from = 'http://soldier.ninelie.site/#/policy/index';
+//        $from = 'http://soldier.ninelie.site/#/policy/index';
 
         $result = WechatService::instance()->getWebOauthInfo($from, 1,false);
 
