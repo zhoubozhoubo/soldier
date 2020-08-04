@@ -85,6 +85,13 @@ class Fans extends Controller
 
         $result = WechatService::instance()->getWebOauthInfo($from, 1,false);
 
+        $this->fans = $result['fansinfo'];
+        $openid = $this->fans['openid'];
+        $token = token($openid);
+        session($token, json_encode($this->fans));
+
+        $result['token'] = $token;
+
         return $this->success('通过code换取成功',$result);
     }
 

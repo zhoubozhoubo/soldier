@@ -44,14 +44,14 @@ class BaseApi extends Controller
         }
 
         if (isset($this->token) && !empty($this->token)) {
-//            $this->fans = json_decode(session($this->token), true);
-            $this->fans = $this->app->db->name('WechatFans')->where(['openid' => $this->token])->find();
+            $this->fans = json_decode(session($this->token), true);
+//            $this->fans = $this->app->db->name('WechatFans')->where(['openid' => $this->token])->find();
             $this->currentFansId = $this->fans['id'];
         }
 
-        /*if (!$this->fans) {
+        if (!$this->fans) {
             return $this->error('未登录，请先登录', '', -1);
-        }*/
+        }
 
         parent::__construct($app);
     }
