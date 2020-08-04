@@ -49,9 +49,9 @@ class BaseApi extends Controller
             $this->currentFansId = $this->fans['id'];
         }
 
-        if (!$this->fans) {
+        /*if (!$this->fans) {
             return $this->error('未登录，请先登录', '', -1);
-        }
+        }*/
 
         parent::__construct($app);
     }
