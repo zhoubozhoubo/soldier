@@ -100,6 +100,9 @@ class ActivityType extends Controller
     protected function _form_filter(&$data)
     {
         if ($this->request->isPost()) {
+            if (empty($data['activity_time'])) {
+                $data['activity_time'] = null;
+            }
             // 查重
             $where = ['title' => $data['title'], 'is_deleted' => 0];
             if (isset($data['id']) && $data['id'] > 0) {
