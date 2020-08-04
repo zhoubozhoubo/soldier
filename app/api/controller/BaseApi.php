@@ -49,7 +49,7 @@ class BaseApi extends Controller
         }
 
         if (!$this->fans) {
-            return $this->error('未登录，请先登录');
+            return $this->error('未登录，请先登录', '', -1);
         }
 
         parent::__construct($app);
