@@ -18,7 +18,7 @@ namespace app\admin\controller;
 use think\admin\Controller;
 
 /**
- * 援助点位信息管理
+ * 咨询点位信息管理
  * Class HelpSpot
  * @package app\admin\controller
  */
@@ -32,7 +32,7 @@ class HelpSpot extends Controller
     public $table = 'BusinessHelpSpot';
 
     /**
-     * 援助点位信息管理
+     * 咨询点位信息管理
      * @auth true
      * @menu true
      * @throws \think\db\exception\DataNotFoundException
@@ -41,7 +41,7 @@ class HelpSpot extends Controller
      */
     public function index()
     {
-        $this->title = '援助点位信息管理';
+        $this->title = '咨询点位信息管理';
         $query = $this->_query($this->table)->like('name,address');
         $query->equal('spot_type');
         // 加载对应数据列表
@@ -56,7 +56,7 @@ class HelpSpot extends Controller
     }
 
     /**
-     * 添加援助点位信息
+     * 添加咨询点位信息
      * @auth true
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\DbException
@@ -69,7 +69,7 @@ class HelpSpot extends Controller
     }
 
     /**
-     * 编辑援助点位信息
+     * 编辑咨询点位信息
      * @auth true
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\DbException
@@ -100,14 +100,14 @@ class HelpSpot extends Controller
     protected function _form_result($result)
     {
         if ($result !== false) {
-            $this->success('恭喜, 援助点位保存成功！');
+            $this->success('恭喜, 咨询点位保存成功！');
         } else {
-            $this->error('援助点位保存失败, 请稍候再试！');
+            $this->error('咨询点位保存失败, 请稍候再试！');
         }
     }
 
     /**
-     * 修改援助点位信息状态
+     * 修改咨询点位信息状态
      * @auth true
      * @throws \think\db\exception\DbException
      */
@@ -118,7 +118,7 @@ class HelpSpot extends Controller
     }
 
     /**
-     * 删除援助点位信息
+     * 删除咨询点位信息
      * @auth true
      * @throws \think\db\exception\DbException
      */

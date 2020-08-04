@@ -65,7 +65,7 @@ CREATE TABLE `business_banner` (
   `is_deleted` tinyint(1) DEFAULT 0 COMMENT '删除(1删除,0未删)',
   `image` varchar(255) DEFAULT NULL COMMENT '图片',
   `title` varchar(255) DEFAULT NULL COMMENT '标题',
-  `banner_type` tinyint(1) DEFAULT NULL COMMENT 'banner类型(1政策解读,2军人风采,3法律援助,4心理咨询)',
+  `banner_type` tinyint(1) DEFAULT NULL COMMENT 'banner类型(1政策解读,2军人风采,3法律咨询,4心理咨询)',
   `update_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT '更新时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC COMMENT='业务-banner';
@@ -97,7 +97,7 @@ CREATE TABLE `business_help_spot` (
   `sort` bigint(20) DEFAULT 0 COMMENT '排序权重',
   `status` tinyint(1) unsigned DEFAULT 1 COMMENT '状态(0:禁用,1:启用)',
   `is_deleted` tinyint(1) DEFAULT 0 COMMENT '删除(1删除,0未删)',
-  `spot_type` tinyint(1) DEFAULT 1 COMMENT '点位类型(1法律援助,2心理咨询)',
+  `spot_type` tinyint(1) DEFAULT 1 COMMENT '点位类型(1法律咨询,2心理咨询)',
   `name` varchar(50) DEFAULT NULL COMMENT '名称',
   `image` varchar(255) DEFAULT NULL COMMENT '图片',
   `address` varchar(255) DEFAULT NULL COMMENT '地址',
@@ -105,7 +105,7 @@ CREATE TABLE `business_help_spot` (
   `update_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT '更新时间',
   `work_time` varchar(255) DEFAULT NULL COMMENT '工作时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='业务-援助点位';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='业务-咨询点位';
 
 -- ----------------------------
 -- Table structure for business_policy

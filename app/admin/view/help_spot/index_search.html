@@ -17,7 +17,7 @@
             <label class="layui-form-label">点位类型</label>
             <div class="layui-input-inline">
                 <select name="spot_type" class="layui-select">
-                    {foreach [''=>'-- 全部类型 --','1'=>'法律援助','2'=>'心理咨询'] as $k=>$v}
+                    {foreach [''=>'-- 全部类型 --','1'=>'法律咨询','2'=>'心理咨询'] as $k=>$v}
                     {if input('get.spot_type') eq $k}
                     <option selected value="{$k}">{$v}</option>
                     {else}

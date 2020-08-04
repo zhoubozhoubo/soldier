@@ -13,7 +13,7 @@
                     <span class="color-green font-w7">板块类型</span>
                     <span class="color-desc margin-left-5">SpotType</span>
                     <select name='banner_type' class='layui-select' required>
-                        {foreach ['1'=>'政策解读','2'=>'军人风采','3'=>'法律援助','4'=>'心理咨询'] as $k=>$v}
+                        {foreach ['1'=>'政策解读','2'=>'军人风采','3'=>'法律咨询','4'=>'心理咨询'] as $k=>$v}
                         {eq name='k' value='$vo.banner_type|default=1'}
                         <option selected value='{$k}'>{$v}</option>
                         {else}

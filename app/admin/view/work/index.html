@@ -45,6 +45,7 @@
                 </th>
                 <th class='text-left nowrap' width="80px">图片</th>
                 <th class='text-left nowrap' width="180px">标题</th>
+                <th class='text-left nowrap' width="180px">时间</th>
                 <th>操作</th>
             </tr>
             </thead>
@@ -63,6 +64,9 @@
                 </td>
                 <td class='text-left nowrap'>
                     {$vo.title|default=''|msubstr=0,10,'utf-8',true}
+                </td>
+                <td class='text-left nowrap'>
+                    {$vo.time|default=$vo.create_at}
                 </td>
                 <td class='text-left nowrap'>
                     {if isset($type) and $type eq 'all'}

@@ -20,7 +20,7 @@
                     <span class="color-green font-w7">点位类型</span>
                     <span class="color-desc margin-left-5">SpotType</span>
                     <select name='spot_type' class='layui-select' required>
-                        {foreach ['1'=>'法律援助','2'=>'心理咨询'] as $k=>$v}
+                        {foreach ['1'=>'法律咨询','2'=>'心理咨询'] as $k=>$v}
                         {eq name='k' value='$vo.spot_type|default=1'}
                         <option selected value='{$k}'>{$v}</option>
                         {else}

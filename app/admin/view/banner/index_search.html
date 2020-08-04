@@ -5,7 +5,7 @@
             <label class="layui-form-label">板块类型</label>
             <div class="layui-input-inline">
                 <select name="banner_type" class="layui-select">
-                    {foreach [''=>'-- 全部类型 --','1'=>'政策解读','2'=>'军人风采','3'=>'法律援助','4'=>'心理咨询'] as $k=>$v}
+                    {foreach [''=>'-- 全部类型 --','1'=>'政策解读','2'=>'军人风采','3'=>'法律咨询','4'=>'心理咨询'] as $k=>$v}
                     {if input('get.banner_type') eq $k}
                     <option selected value="{$k}">{$v}</option>
                     {else}

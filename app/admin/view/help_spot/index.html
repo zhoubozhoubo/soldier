@@ -4,17 +4,17 @@
 
 {if isset($type) and $type eq 'all'}
 <!--{if auth("add")}-->
-<button data-modal='{:url("add")}' data-title="添加援助点位信息" class='layui-btn layui-btn-sm layui-btn-primary'>添加援助点位信息</button>
+<button data-modal='{:url("add")}' data-title="添加咨询点位信息" class='layui-btn layui-btn-sm layui-btn-primary'>添加援助点位信息</button>
 <!--{/if}-->
 <!--{if auth("state")}-->
-<a data-confirm="确定要禁用该援助点位信息吗？" data-action="{:url('state')}" data-rule="id#{key};status#0" data-csrf="{:systoken('state')}" class='layui-btn layui-btn-sm layui-btn-primary'>批量禁用</a>
+<a data-confirm="确定要禁用该咨询点位信息吗？" data-action="{:url('state')}" data-rule="id#{key};status#0" data-csrf="{:systoken('state')}" class='layui-btn layui-btn-sm layui-btn-primary'>批量禁用</a>
 <!--{/if}-->
 {else}
 <!--{if auth("state")}-->
-<a data-confirm="确定要恢复这些援助点位信息吗？" data-action="{:url('state')}" data-rule="id#{key};status#1" data-csrf="{:systoken('state')}" class='layui-btn layui-btn-sm layui-btn-primary'>批量恢复</a>
+<a data-confirm="确定要恢复这些咨询点位信息吗？" data-action="{:url('state')}" data-rule="id#{key};status#1" data-csrf="{:systoken('state')}" class='layui-btn layui-btn-sm layui-btn-primary'>批量恢复</a>
 <!--{/if}-->
 <!--{if auth("remove")}-->
-<a data-confirm="确定要永久删除这些援助点位信息吗？" data-action='{:url("remove")}' data-rule="id#{key}" data-csrf="{:systoken('remove')}" class='layui-btn layui-btn-sm layui-btn-primary'>批量删除</a>
+<a data-confirm="确定要永久删除这些咨询点位信息吗？" data-action='{:url("remove")}' data-rule="id#{key}" data-csrf="{:systoken('remove')}" class='layui-btn layui-btn-sm layui-btn-primary'>批量删除</a>
 <!--{/if}-->
 {/if}
 
@@ -23,7 +23,7 @@
 {block name="content"}
 <div class="layui-tab layui-tab-card think-bg-white">
     <ul class="layui-tab-title">
-        {foreach ['all'=>'援助点位信息','recycle'=>'回 收 站'] as $k=>$v}
+        {foreach ['all'=>'咨询点位信息','recycle'=>'回 收 站'] as $k=>$v}
         {if isset($type) and $type eq $k}
         <li data-open="{:url('index')}?type={$k}" class="layui-this">{$v}</li>
         {else}
@@ -70,7 +70,7 @@
                 </td>
                 <td class='text-left nowrap'>
                     <!--{if $vo.spot_type eq 1}-->
-                    <span class="layui-badge layui-bg-blue">法律援助</span>
+                    <span class="layui-badge layui-bg-blue">法律咨询</span>
                     <!--{else}-->
                     <span class="layui-badge layui-bg-black">心理咨询</span>
                     <!--{/if}-->
@@ -87,17 +87,17 @@
                 <td class='text-left nowrap'>
                     {if isset($type) and $type eq 'all'}
                     <!--{if auth("edit")}-->
-                    <a data-dbclick class="layui-btn layui-btn-sm" data-title="编辑援助点位信息" data-modal='{:url("edit")}?id={$vo.id}'>编 辑</a>
+                    <a data-dbclick class="layui-btn layui-btn-sm" data-title="编辑咨询点位信息" data-modal='{:url("edit")}?id={$vo.id}'>编 辑</a>
                     <!--{/if}-->
                     <!--{if auth("state") and $vo.status eq 1}-->
-                    <a class="layui-btn layui-btn-sm layui-btn-warm" data-confirm="确定要禁用该援助点位信息吗?" data-action="{:url('state')}" data-value="id#{$vo.id};status#0" data-csrf="{:systoken('state')}">禁 用</a>
+                    <a class="layui-btn layui-btn-sm layui-btn-warm" data-confirm="确定要禁用该咨询点位信息吗?" data-action="{:url('state')}" data-value="id#{$vo.id};status#0" data-csrf="{:systoken('state')}">禁 用</a>
                     <!--{/if}-->
                     {else}
                     <!--{if auth("state") and $vo.status eq 0}-->
-                    <a class="layui-btn layui-btn-sm layui-btn-warm" data-confirm="确定要恢复该援助点位信息吗？" data-action="{:url('state')}" data-value="id#{$vo.id};status#1" data-csrf="{:systoken('state')}">恢 复</a>
+                    <a class="layui-btn layui-btn-sm layui-btn-warm" data-confirm="确定要恢复该咨询点位信息吗？" data-action="{:url('state')}" data-value="id#{$vo.id};status#1" data-csrf="{:systoken('state')}">恢 复</a>
                     <!--{/if}-->
                     <!--{if auth("remove")}-->
-                    <a class="layui-btn layui-btn-sm layui-btn-danger" data-confirm="确定要永久删除此援助点位信息吗？" data-action="{:url('remove')}" data-value="id#{$vo.id}" data-csrf="{:systoken('remove')}">删 除</a>
+                    <a class="layui-btn layui-btn-sm layui-btn-danger" data-confirm="确定要永久删除此咨询点位信息吗？" data-action="{:url('remove')}" data-value="id#{$vo.id}" data-csrf="{:systoken('remove')}">删 除</a>
                     <!--{/if}-->
                     {/if}
                 </td>

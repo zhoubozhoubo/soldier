@@ -99,7 +99,11 @@ class Recruit extends Controller
      */
     protected function _form_filter(&$data)
     {
-
+        if ($this->request->isPost()) {
+            if (empty($data['end_date'])) {
+                $data['end_date'] = null;
+            }
+        }
     }
 
     /**

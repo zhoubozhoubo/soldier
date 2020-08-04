@@ -18,7 +18,7 @@ namespace app\api\controller;
 use app\api\service\FansService;
 
 /**
- * 援助点位接口
+ * 咨询点位接口
  * Class HelpSpot
  * @package app\api\controller
  */
