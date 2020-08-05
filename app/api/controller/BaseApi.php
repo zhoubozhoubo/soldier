@@ -49,9 +49,9 @@ class BaseApi extends Controller
             $this->currentFansId = $this->fans['id'];
         }
 
-        if (!$this->fans) {
+        /*if (!$this->fans) {
             return $this->error('未登录，请先登录', '', -1);
-        }
+        }*/
 
         parent::__construct($app);
     }
@@ -81,15 +81,15 @@ class BaseApi extends Controller
         $where['is_deleted'] = 0;
         $where['status'] = 1;
 
-        $list = $this->app->db->name($table)->where($where)->order($order)->select();
+        $list = $this->app->db->name($table)->where($where)->order($order)->select()->toArray();
         $count = $this->app->db->name($table)->where($where)->count();
 
         foreach ($list as $k => $v) {
             if (isset($v['create_at']) && !empty($v['create_at'])) {
-                $list[$k]['create_at'] = date('Y/m/d H:i', strtotime($v['create_at']));
+                $list[$k]['create_at'] = date('Y-m-d H:i', strtotime($v['create_at']));
             }
             if (isset($v['update_at']) && !empty($v['update_at'])) {
-                $list[$k]['update_at'] = date('Y/m/d H:i', strtotime($v['update_at']));
+                $list[$k]['update_at'] = date('Y-m-d H:i', strtotime($v['update_at']));
             }
         }
 
@@ -110,16 +110,16 @@ class BaseApi extends Controller
         $where['is_deleted'] = 0;
         $where['status'] = 1;
 
-        $list = $this->app->db->name($table)->where($where)->order($order)->page($this->page, $this->size)->select();
+        $list = $this->app->db->name($table)->where($where)->order($order)->page($this->page, $this->size)->select()->toArray();
         $count = $this->app->db->name($table)->where($where)->count();
         $pages = ceil($count/$this->size);
 
         foreach ($list as $k => $v) {
             if (isset($v['create_at']) && !empty($v['create_at'])) {
-                $list[$k]['create_at'] = date('Y/m/d H:i', strtotime($v['create_at']));
+                $list[$k]['create_at'] = date('Y-m-d H:i', strtotime($v['create_at']));
             }
             if (isset($v['update_at']) && !empty($v['update_at'])) {
-                $list[$k]['update_at'] = date('Y/m/d H:i', strtotime($v['update_at']));
+                $list[$k]['update_at'] = date('Y-m-d H:i', strtotime($v['update_at']));
             }
         }
 
