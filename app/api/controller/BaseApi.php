@@ -84,6 +84,15 @@ class BaseApi extends Controller
         $list = $this->app->db->name($table)->where($where)->order($order)->select();
         $count = $this->app->db->name($table)->where($where)->count();
 
+        foreach ($list as $item) {
+            if (isset($item['create_at']) && !empty($item['create_at'])) {
+                $item['create_at'] = date_format($item['create_at'], 'Y/m/d H:i');
+            }
+            if (isset($item['update_at']) && !empty($item['update_at'])) {
+                $item['update_at'] = date_format($item['update_at'], 'Y/m/d H:i');
+            }
+        }
+
         $content = [
             'list' => $list,
             'count' => $count,
@@ -104,6 +113,15 @@ class BaseApi extends Controller
         $list = $this->app->db->name($table)->where($where)->order($order)->page($this->page, $this->size)->select();
         $count = $this->app->db->name($table)->where($where)->count();
         $pages = ceil($count/$this->size);
+
+        foreach ($list as $item) {
+            if (isset($item['create_at']) && !empty($item['create_at'])) {
+                $item['create_at'] = date_format($item['create_at'], 'Y/m/d H:i');
+            }
+            if (isset($item['update_at']) && !empty($item['update_at'])) {
+                $item['update_at'] = date_format($item['update_at'], 'Y/m/d H:i');
+            }
+        }
 
         $content = [
             'list' => $list,
