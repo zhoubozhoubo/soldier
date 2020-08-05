@@ -144,7 +144,16 @@ class BaseApi extends Controller
             $where['is_deleted'] = 0;
             $where['status'] = 1;
 
-            return $this->app->db->name($table)->where($where)->find($this->id);
+            $details = $this->app->db->name($table)->where($where)->find($this->id);
+
+            if (isset($details['create_at']) && !empty($details['create_at'])) {
+                $details['create_at'] = date('Y-m-d H:i', strtotime($details['create_at']));
+            }
+            if (isset($details['update_at']) && !empty($details['update_at'])) {
+                $details['update_at'] = date('Y-m-d H:i', strtotime($details['update_at']));
+            }
+
+            return $details;
         } else {
             return false;
         }
