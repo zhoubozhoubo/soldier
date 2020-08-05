@@ -89,6 +89,11 @@ class Work extends Controller
      */
     protected function _form_filter(&$data)
     {
+        if ($this->request->isPost()) {
+            if (empty($data['time'])) {
+                $data['time'] = null;
+            }
+        }
     }
 
     /**
