@@ -84,12 +84,12 @@ class BaseApi extends Controller
         $list = $this->app->db->name($table)->where($where)->order($order)->select();
         $count = $this->app->db->name($table)->where($where)->count();
 
-        foreach ($list as $item) {
+        foreach ($list as $k => $v) {
             if (isset($item['create_at']) && !empty($item['create_at'])) {
-                $item['create_at'] = date('Y/m/d H:i', strtotime($item['create_at']));
+                $list[$k]['create_at'] = date('Y/m/d H:i', strtotime($item['create_at']));
             }
             if (isset($item['update_at']) && !empty($item['update_at'])) {
-                $item['update_at'] = date('Y/m/d H:i', strtotime($item['update_at']));
+                $list[$k]['update_at'] = date('Y/m/d H:i', strtotime($item['update_at']));
             }
         }
 
@@ -114,12 +114,12 @@ class BaseApi extends Controller
         $count = $this->app->db->name($table)->where($where)->count();
         $pages = ceil($count/$this->size);
 
-        foreach ($list as $item) {
+        foreach ($list as $k => $v) {
             if (isset($item['create_at']) && !empty($item['create_at'])) {
-                $item['create_at'] = date('Y/m/d H:i', strtotime($item['create_at']));
+                $list[$k]['create_at'] = date('Y/m/d H:i', strtotime($item['create_at']));
             }
             if (isset($item['update_at']) && !empty($item['update_at'])) {
-                $item['update_at'] = date('Y/m/d H:i', strtotime($item['update_at']));
+                $list[$k]['update_at'] = date('Y/m/d H:i', strtotime($item['update_at']));
             }
         }
 
