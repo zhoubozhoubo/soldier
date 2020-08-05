@@ -3,15 +3,15 @@
 {block name="button"}
 
 {if session('user.username') eq 'admin'}
-<!--<div class="layui-form inline-block think-switch-button margin-right-10">
-    &lt;!&ndash;{if $app->isDebug()}&ndash;&gt;
+<div class="layui-form inline-block think-switch-button margin-right-10">
+    <!--{if $app->isDebug()}-->
     <input type="checkbox" lay-skin="switch" lay-text="生产模式|开发模式" lay-filter="ThinkAdminDebug">
-    &lt;!&ndash;{else}&ndash;&gt;
+    <!--{else}-->
     <input type="checkbox" lay-skin="switch" lay-text="生产模式|开发模式" lay-filter="ThinkAdminDebug" checked>
-    &lt;!&ndash;{/if}&ndash;&gt;
+    <!--{/if}-->
     <script>form.render()</script>
 </div>
-<a class="layui-btn layui-btn-sm layui-btn-primary" data-queue="{:url('admin/api.plugs/optimize')}">优化数据库</a>-->
+<!--<a class="layui-btn layui-btn-sm layui-btn-primary" data-queue="{:url('admin/api.plugs/optimize')}">优化数据库</a>-->
 {/if}
 
 {if auth('system')}
