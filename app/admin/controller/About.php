@@ -60,7 +60,7 @@ class About extends Controller
             $this->fetch();
         } else {
             foreach ($this->request->post() as $name => $value) sysconf($name, $value);
-            $this->success('修改关于军人e家成功！');
+            $this->success('修改关于军人e家成功！', 'javascript:history.back()');
         }
     }
 

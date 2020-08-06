@@ -3,7 +3,7 @@
 {block name="button"}
 
 {if auth('system')}
-<a class="layui-btn layui-btn-sm layui-btn-primary" data-modal="{:url('system')}">修改内容</a>
+<a class="layui-btn layui-btn-sm layui-btn-primary" data-open="{:url('system')}">修改内容</a>
 {/if}
 
 {/block}
@@ -14,7 +14,7 @@
         <div class="color-green font-w7">关于军人e家</div>
         <label class="relative block">
 <!--            <textarea ng-model="{$about}" readonly class="layui-textarea layui-bg-gray" style="height:80px;line-height:18px"></textarea>-->
-            {$about|default=''|htmlspecialchars_decode}
+            <div style="width: 400px; overflow: hidden;">{$about|default=''|raw|htmlspecialchars_decode}</div>
         </label>
         <div class="help-block">关于军人e家介绍说明</div>
     </div>

@@ -30,6 +30,7 @@ class Policy extends Controller
      * @var string
      */
     public $table = 'BusinessPolicy';
+    public $id = '';
 
     /**
      * 政策解读管理
@@ -64,8 +65,17 @@ class Policy extends Controller
      */
     public function add()
     {
-        $this->_applyFormToken();
-        $this->_form($this->table, 'form');
+        if ($this->request->isGet()) {
+            $this->title = '新建政策解读';
+            $this->fetch('form');
+        } else {
+            $postData = $this->request->post();
+            if ($this->app->db->name($this->table)->insert($postData) !== false) {
+                $this->success('政策解读添加成功！', 'javascript:history.back()');
+            } else {
+                $this->error('政策解读添加失败，请稍候再试！');
+            }
+        }
     }
 
     /**
@@ -77,31 +87,20 @@ class Policy extends Controller
      */
     public function edit()
     {
-        $this->_applyFormToken();
-        $this->_form($this->table, 'form');
-    }
+        if ($this->request->isGet()) {
+            $this->id = $this->request->get('id');
+            $data = $this->app->db->name($this->table)->find($this->id);
 
-    /**
-     * 表单数据处理
-     * @param array $data
-     * @throws \think\db\exception\DataNotFoundException
-     * @throws \think\db\exception\DbException
-     * @throws \think\db\exception\ModelNotFoundException
-     */
-    protected function _form_filter(&$data)
-    {
-    }
-
-    /**
-     * 表单结果处理
-     * @param boolean $result
-     */
-    protected function _form_result($result)
-    {
-        if ($result !== false) {
-            $this->success('恭喜, 政策解读保存成功！');
+            $this->title = '编辑政策解读';
+            $this->assign('vo', $data);
+            $this->fetch('form');
         } else {
-            $this->error('政策解读保存失败, 请稍候再试！');
+            $postData = $this->request->post();
+            if ($this->app->db->name($this->table)->update($postData) !== false) {
+                $this->success('政策解读编辑成功！', 'javascript:history.back()');
+            } else {
+                $this->error('政策解读编辑失败，请稍候再试！');
+            }
         }
     }
 

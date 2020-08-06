@@ -63,8 +63,20 @@ class Work extends Controller
      */
     public function add()
     {
-        $this->_applyFormToken();
-        $this->_form($this->table, 'form');
+        if ($this->request->isGet()) {
+            $this->title = '新建工作动态';
+            $this->fetch('form');
+        } else {
+            $postData = $this->request->post();
+            if (empty($postData['time'])) {
+                $postData['time'] = null;
+            }
+            if ($this->app->db->name($this->table)->insert($postData) !== false) {
+                $this->success('工作动态添加成功！', 'javascript:history.back()');
+            } else {
+                $this->error('工作动态添加失败，请稍候再试！');
+            }
+        }
     }
 
     /**
@@ -76,36 +88,23 @@ class Work extends Controller
      */
     public function edit()
     {
-        $this->_applyFormToken();
-        $this->_form($this->table, 'form');
-    }
+        if ($this->request->isGet()) {
+            $this->id = $this->request->get('id');
+            $data = $this->app->db->name($this->table)->find($this->id);
 
-    /**
-     * 表单数据处理
-     * @param array $data
-     * @throws \think\db\exception\DataNotFoundException
-     * @throws \think\db\exception\DbException
-     * @throws \think\db\exception\ModelNotFoundException
-     */
-    protected function _form_filter(&$data)
-    {
-        if ($this->request->isPost()) {
-            if (empty($data['time'])) {
-                $data['time'] = null;
-            }
-        }
-    }
-
-    /**
-     * 表单结果处理
-     * @param boolean $result
-     */
-    protected function _form_result($result)
-    {
-        if ($result !== false) {
-            $this->success('恭喜, 工作动态保存成功！');
+            $this->title = '编辑工作动态';
+            $this->assign('vo', $data);
+            $this->fetch('form');
         } else {
-            $this->error('工作动态保存失败, 请稍候再试！');
+            $postData = $this->request->post();
+            if (empty($postData['time'])) {
+                $postData['time'] = null;
+            }
+            if ($this->app->db->name($this->table)->update($postData) !== false) {
+                $this->success('工作动态编辑成功！', 'javascript:history.back()');
+            } else {
+                $this->error('工作动态编辑失败，请稍候再试！');
+            }
         }
     }
 

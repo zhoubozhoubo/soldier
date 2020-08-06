@@ -4,7 +4,7 @@
 
 {if isset($type) and $type eq 'all'}
 <!--{if auth("add")}-->
-<button data-modal='{:url("add")}' data-title="添加政策解读信息" class='layui-btn layui-btn-sm layui-btn-primary'>添加政策解读信息</button>
+<button data-open='{:url("add")}' data-title="添加政策解读信息" class='layui-btn layui-btn-sm layui-btn-primary'>添加政策解读信息</button>
 <!--{/if}-->
 <!--{if auth("state")}-->
 <a data-confirm="确定要禁用该政策解读信息吗？" data-action="{:url('state')}" data-rule="id#{key};status#0" data-csrf="{:systoken('state')}" class='layui-btn layui-btn-sm layui-btn-primary'>批量禁用</a>
@@ -87,7 +87,7 @@
                 <td class='text-left nowrap'>
                     {if isset($type) and $type eq 'all'}
                     <!--{if auth("edit")}-->
-                    <a data-dbclick class="layui-btn layui-btn-sm" data-title="编辑政策解读信息" data-modal='{:url("edit")}?id={$vo.id}'>编 辑</a>
+                    <a data-dbclick class="layui-btn layui-btn-sm" data-title="编辑政策解读信息" data-open='{:url("edit")}?id={$vo.id}'>编 辑</a>
                     <!--{/if}-->
                     <!--{if auth("state") and $vo.status eq 1}-->
                     <a class="layui-btn layui-btn-sm layui-btn-warm" data-confirm="确定要禁用该政策解读信息吗?" data-action="{:url('state')}" data-value="id#{$vo.id};status#0" data-csrf="{:systoken('state')}">禁 用</a>
