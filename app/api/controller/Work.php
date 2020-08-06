@@ -36,7 +36,7 @@ class Work extends BaseApi
      */
     public function getAll()
     {
-        $data = $this->BaseAll($this->table, [], 'sort asc, create_at desc');
+        $data = $this->BaseAll($this->table, [], 'sort asc, time desc, create_at desc');
 
         return $this->returnSuccess($data);
     }
