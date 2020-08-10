@@ -46,7 +46,7 @@ class Work extends BaseApi
      */
     public function getPage()
     {
-        $data = $this->BasePage($this->table, [], 'sort asc, create_at desc');
+        $data = $this->BasePage($this->table, [], 'sort asc, time desc, create_at desc');
 
         return $this->returnSuccess($data);
     }
